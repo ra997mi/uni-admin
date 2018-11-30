@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header card-header-danger">
+            <h4 class="card-title">تسجيل الدخول</h4>
+            <p class="card-category">قم بتسجيل الدخول للاستخدام لوحة التحكم</p>
+        </div>
+        <div class="card-body">
+            <form role="form" #f="ngForm" (ngSubmit)="signIn(f)">                  
+				<input class="form-control" placeholder="البريد الالكتروني" type="email" name="email" ngModel required>                    
+				<input class="form-control" placeholder="كلمة المرور" type="password"  name="password" ngModel required>
+				<button type="submit" [disabled]="!f.valid" class="btn btn-danger">تسجيل الدخول</button>
+			</form>
+			<div class="alert alert-danger alert-with-icon" *ngIf="hide">
+				<i class="material-icons" data-notify="icon">error_outline</i>
+				<button mat-button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+				<span data-notify="message">الرجاء التاكد من البريد الالكتروني او كلمة المرور</span>
+			</div>			
+        </div>
+  </div>
+</div>
+
