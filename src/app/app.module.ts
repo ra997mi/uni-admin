@@ -1,7 +1,9 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import {ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule} from '@angular/router';
+
+import { DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -10,6 +12,7 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
 import { StorageServiceModule } from 'angular-webstorage-service';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -28,23 +31,24 @@ import { LoginComponent } from './login/login.component';
   imports: [
     BrowserAnimationsModule,
     FormsModule,
+	  EditorModule,
     ReactiveFormsModule,
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
     StorageServiceModule,
-	AngularFireDatabaseModule,
-	AngularFireModule.initializeApp(environment.firebase),
+	  AngularFireDatabaseModule,
+	  AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    AngularFireStorageModule
+    AngularFireStorageModule,
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent,
+    LoginComponent
   ],
-  providers: [NewsService, AuthGuard, {provide: APP_BASE_HREF, useValue : ''}],
+  providers: [DatePipe, NewsService, AuthGuard, {provide: APP_BASE_HREF, useValue : ''}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

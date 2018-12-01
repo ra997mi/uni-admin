@@ -4,7 +4,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { ArticlesComponent } from '../../articles/articles.component';
-
+import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { AddArticleComponent } from '../../add-article/add-article.component';
+import { EditArticleComponent } from '../../edit-article/edit-article.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 import {
   MatButtonModule,
@@ -12,8 +15,11 @@ import {
   MatRippleModule,
   MatFormFieldModule,
   MatTooltipModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -25,9 +31,15 @@ import {
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    EditorModule
   ],
   declarations: [
-    ArticlesComponent,
+  ArticlesComponent,
+  DashboardComponent,
+  AddArticleComponent,
+  EditArticleComponent
   ]
 })
 

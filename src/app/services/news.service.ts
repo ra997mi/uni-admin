@@ -23,11 +23,11 @@ export class NewsService {
       image,
     });
   }
-  updateNews(id, title, Description, date, image): Promise<void> {
+  updateNews(id, title, description, date, image): Promise<void> {
      return this.firestore.doc(`newsList/${id}`).set({
       id,
       title,
-      Description,
+      description,
       date,
       image,
     });
@@ -35,7 +35,7 @@ export class NewsService {
   getNews(): AngularFirestoreCollection<newsdatatype> {
     return this.firestore.collection('newsList');
   }
-
+  
   deleteNews(newsid: string): Promise<void> {
     return this.firestore.doc(`newsList/${newsid}`).delete();
   }

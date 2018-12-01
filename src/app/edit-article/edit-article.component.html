@@ -1,0 +1,48 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title" style="text-align: center">تعديل الخبر</h4>
+                      <p class="card-category" style="text-align: center">تعديل خبر معين من قائمة الاخبار</p>
+                  </div>
+                  <div class="card-body">
+                      <form #f="ngForm" (ngSubmit)="saveFormData(f)">
+                          <div class="row">
+                              <div class="col-md-10">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="عنوان المقالة" name="article_title" [(ngModel)]="article_title" required>
+                                  </mat-form-field>
+                              </div>
+							  <div class="col-md-2">
+								<mat-form-field>
+								  <input matInput placeholder="اختر التاريخ" [matDatepicker]="picker" required>
+								  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+								  <mat-datepicker #picker></mat-datepicker>
+								</mat-form-field>								
+                              </div>
+                          </div>
+						  <div class="row">
+                              <div class="col-md-12">
+                                <div class="example-full-width">
+                                    <input style = "display: none" type="file" name="article_image" (change)="onSelectedFile($event)" accept=".png,.jpg" required #fileInput/>		
+                                    <button mat-raised-button  class="btn btn-danger" (click)="fileInput.click()">اضافة صورة</button>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-12">
+                                <label>تفاصيل المقالة</label>
+                                <editor name="article_details"></editor>
+                              </div>
+                          </div>
+                          <button mat-raised-button type="submit" [disabled]="!f.valid"  class="btn btn-danger pull-right">اضافة</button>
+                          <div class="clearfix"></div>
+                      </form>				  
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
