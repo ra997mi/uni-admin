@@ -1,0 +1,12 @@
+.mcard{
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+  }
+  .signin-content {
+    padding: 60px 1rem;
+    margin-top : 100px;
+  }
+  .full-width-input {
+    width: 100%;
+  }

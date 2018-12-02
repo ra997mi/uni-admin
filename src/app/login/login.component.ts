@@ -19,12 +19,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   signIn(f) {
-    this.newsService.login(f.value.email, f.value.password).then((user) => {
+    this.newsService.login(f.value.email, f.value.password,).then((user) => {
       this.storage.set(STORAGE_KEY, this.afAuth.auth.currentUser);
       this.router.navigate(['dashboard']);
     }, (err) => {
         alert("البريد الالكتروني او كلمة المرور غير صحيحة");
     });
   }
-
 }

@@ -17,7 +17,7 @@
                               </div>
 							  <div class="col-md-2">
 								<mat-form-field>
-								  <input matInput placeholder="اختر التاريخ" [matDatepicker]="picker" required>
+								  <input matInput placeholder="اختر التاريخ" [matDatepicker]="picker" [(ngModel)]="article_date" required>
 								  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 								  <mat-datepicker #picker></mat-datepicker>
 								</mat-form-field>								
@@ -26,18 +26,17 @@
 						  <div class="row">
                               <div class="col-md-12">
                                 <div class="example-full-width">
-                                    <input style = "display: none" type="file" name="article_image" (change)="onSelectedFile($event)" accept=".png,.jpg" required #fileInput/>		
-                                    <button mat-raised-button  class="btn btn-danger" (click)="fileInput.click()">اضافة صورة</button>
+                                    <input type="file" name="article_image" (change)="onSelectedFile($event)" accept=".png,.jpg" required />
                                 </div>
                               </div>
                           </div>
                           <div class="row">
                               <div class="col-md-12">
                                 <label>تفاصيل المقالة</label>
-                                <editor name="article_details"></editor>
+                                <editor name="article_details" [(ngModel)]="article_details"></editor>
                               </div>
                           </div>
-                          <button mat-raised-button type="submit" [disabled]="!f.valid"  class="btn btn-danger pull-right">اضافة</button>
+                          <button mat-raised-button type="submit" [disabled]="!f.valid"  class="btn btn-danger pull-right">تحديث</button>
                           <div class="clearfix"></div>
                       </form>				  
                   </div>
