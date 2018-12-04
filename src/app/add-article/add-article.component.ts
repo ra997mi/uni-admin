@@ -50,7 +50,7 @@ export class AddArticleComponent implements OnInit {
 			this.article_image = url;
 			this.newsService.addNews(this.article_title, this.article_details, this.article_date, this.article_image).then(
 			  (res) => {
-				this.route.navigate(['articles']);
+				this.router.navigate(['articles']);
 		        this.article_image = '';
 			},(err) => {
         alert("خطا في ادخال البيانات");

@@ -50,6 +50,8 @@
     "moment": "2.22.1",
     "perfect-scrollbar": "1.1.0",
     "popper.js": "1.14.3",
+    "primeicons": "^1.0.0",
+    "primeng": "^7.0.0",
     "rxjs": "6.3.3",
     "rxjs-compat": "6.3.3",
     "web-animations-js": "2.3.1",

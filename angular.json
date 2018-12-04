@@ -23,7 +23,11 @@
             "styles": [
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "src/assets/scss/material-dashboard.scss",
-              "src/assets/css/demo.css"
+              "src/assets/css/demo.css",
+			  "node_modules/primeicons/primeicons.css",
+			  "node_modules/primeng/resources/themes/nova-light/theme.css",
+			  "node_modules/primeng/resources/primeng.min.css",
+			  "src/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",

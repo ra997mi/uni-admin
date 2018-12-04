@@ -26,29 +26,36 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
+import { NotifyComponent } from './notify/notify.component';
+
+import {ToastModule} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
+
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
-	  EditorModule,
+	EditorModule,
     ReactiveFormsModule,
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
     StorageServiceModule,
-	  AngularFireDatabaseModule,
-	  AngularFireModule.initializeApp(environment.firebase),
+	AngularFireDatabaseModule,
+	AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule,
+	ToastModule,
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent
+    LoginComponent,
+    NotifyComponent
   ],
-  providers: [DatePipe, NewsService, AuthGuard, {provide: APP_BASE_HREF, useValue : ''}],
+  providers: [MessageService,DatePipe, NewsService, AuthGuard, {provide: APP_BASE_HREF, useValue : ''}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

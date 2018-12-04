@@ -7,10 +7,12 @@
         <div class="card-body">
             <form role="form" #f="ngForm" (ngSubmit)="signIn(f)">                  
 				<input class="form-control" placeholder="البريد الالكتروني" type="email" name="email" ngModel required>                    
-				<input class="form-control" placeholder="كلمة المرور" type="password"  name="password" ngModel required>
+                <input class="form-control" placeholder="كلمة المرور" [type]="show ? 'text' : 'password'"  name="password" ngModel required>
+                <input type="checkbox" (click)="password()">اظهار كلمة المرور<br>
 				<button type="submit" [disabled]="!f.valid" class="btn btn-danger">تسجيل الدخول</button>
-			</form>			
+            </form>		
         </div>
+        <p-toast position="bottom-center"></p-toast>	
   </div>
 </div>
 
