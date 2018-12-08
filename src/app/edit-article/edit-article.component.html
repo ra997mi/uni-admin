@@ -17,7 +17,7 @@
                               </div>
 							  <div class="col-md-2">
 								<mat-form-field>
-								  <input matInput placeholder="اختر التاريخ" [matDatepicker]="picker" [(ngModel)]="article_date" required>
+								  <input name = "article_date" matInput placeholder="اختر التاريخ" [matDatepicker]="picker" [(ngModel)]="article_date" required>
 								  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 								  <mat-datepicker #picker></mat-datepicker>
 								</mat-form-field>								
@@ -26,8 +26,11 @@
 						  <div class="row">
                               <div class="col-md-12">
                                 <div class="example-full-width">
-                                    <input type="file" name="article_image" (change)="onSelectedFile($event)" accept=".png,.jpg" required />
-                                </div>
+                                 <input type="file" (change)="onSelectedFile($event)" accept=".png,.jpg" required />	
+									<div class="progress">
+									<div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+								    </div>
+								</div>
                               </div>
                           </div>
                           <div class="row">
@@ -37,6 +40,7 @@
                               </div>
                           </div>
                           <button mat-raised-button type="submit" [disabled]="!f.valid"  class="btn btn-danger pull-right">تحديث</button>
+						  <p-toast position="bottom-center"></p-toast>	
                           <div class="clearfix"></div>
                       </form>				  
                   </div>

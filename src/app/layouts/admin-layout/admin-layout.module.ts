@@ -12,6 +12,11 @@ import { AddVideoComponent } from '../../add-video/add-video.component';
 import { EditVideoComponent } from '../../edit-video/edit-video.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 
+import {ToastModule} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
+
+import { YoutubePlayerModule } from 'ngx-youtube-player';
+
 import {
   MatButtonModule,
   MatInputModule,
@@ -36,7 +41,9 @@ import {
     MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    EditorModule
+    EditorModule,
+	YoutubePlayerModule,
+	ToastModule,
   ],
   declarations: [
   DashboardComponent,

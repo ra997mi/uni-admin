@@ -31,6 +31,8 @@ import { NotifyComponent } from './notify/notify.component';
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 
+import { YoutubePlayerModule } from 'ngx-youtube-player';
+
 
 @NgModule({
   imports: [
@@ -48,6 +50,7 @@ import {MessageService} from 'primeng/api';
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule,
 	ToastModule,
+    YoutubePlayerModule,
   ],
   declarations: [
     AppComponent,

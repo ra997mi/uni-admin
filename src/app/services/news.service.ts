@@ -13,6 +13,30 @@ export class NewsService {
 
   constructor(public firestore: AngularFirestore, public afAuth: AngularFireAuth) {}
   
+    addVideos(title: string, link: string): Promise<void> {
+    const id = this.firestore.createId();
+    return this.firestore.doc(`videosList/${id}`).set({
+      id,
+      title,
+	  link,
+    });
+  }
+  
+    updateVideos(id, title, link): Promise<void> {
+     return this.firestore.doc(`videosList/${id}`).set({
+      id,
+      title,
+	  link,
+    });
+  }
+  getVideos(): AngularFirestoreCollection<newsdatatype> {
+    return this.firestore.collection('videosList');
+  }
+  
+  deleteVideos(videosid: string): Promise<void> {
+    return this.firestore.doc(`videosList/${videosid}`).delete();
+  }
+  
   addNews(title: string, description: string, date: string, image: string): Promise<void> {
     const id = this.firestore.createId();
     return this.firestore.doc(`newsList/${id}`).set({

@@ -1,3 +1,28 @@
-<p>
-  videos works!
-</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h3 class="card-title" style="text-align: center">لوحة الفيديوهات الرئيسية</h3>
+                <button mat-raised-button  class="btn btn-danger pull-right" (click)="addVideo()">اضافة فيديو جديد</button>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4" *ngFor="let item of videosData" style="margin-top: 25px;">
+                        <div class="card card-profile">
+                            <div class="card-body">
+							<youtube-player [videoId]="youtube_parser(item.link)" [height]= "140" [width]="240"></youtube-player><hr>
+                                <h6 class="card-category text-gray">{{item.title}}</h6>							
+                                <button class="btn btn-danger btn-round" (click)="updateVideo(item)">تعديل</button>
+                                <button class="btn btn-danger btn-round " (click)="deleteVideo(item.id)">حذف</button>
+                            </div>
+                       </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+
+
+
