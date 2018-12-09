@@ -28,7 +28,7 @@
                                 <div class="example-full-width">
                                  <input type="file" (change)="onSelectedFile($event)" accept=".png,.jpg" required />	
 									<div class="progress">
-									<div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+									<div class="progress-bar" style = "background-color:#e53935;" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
 								    </div>
 								</div>
                               </div>

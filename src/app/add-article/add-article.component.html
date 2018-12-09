@@ -28,7 +28,7 @@
                                 <div class="example-full-width">
                                   <input type="file" (change)="onSelectedFile($event)" accept=".png,.jpg" required />	
 									<div class="progress">
-									<div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+									<div class="progress-bar" style = "background-color:#e53935;" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
 								    </div>								  
                                 </div>
                               </div>
@@ -39,7 +39,7 @@
                                 <editor name="article_details" [(ngModel)]="article_details"></editor>
                               </div>
                           </div>
-                          <button mat-raised-button type="submit" [disabled]="!f.valid"  class="btn btn-danger pull-right">اضافة</button>
+                          <button mat-raised-button type="submit" [disabled]="!f.valid"  class="btn btn-danger pull-right"><i class="material-icons">check</i> اضافة</button>
 						  <p-toast position="bottom-center"></p-toast>	
                           <div class="clearfix"></div>
                       </form>				  

@@ -10,18 +10,22 @@ const STORAGE_KEY = 'local_user';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+	
+	newsCounter;
+	videosCounter;
 
   constructor(public afAuth: AngularFireAuth,
     private router: Router,
-    @Inject(SESSION_STORAGE) private storage: StorageService) { }
+    @Inject(SESSION_STORAGE) private storage: StorageService) {}
 
  ngOnInit( ) {
-   console.log(this.storage
-     .get(STORAGE_KEY) || 'LocaL storage is empty');
-   if (this.storage
-     .get(STORAGE_KEY) == null) {
+   console.log(this.storage.get(STORAGE_KEY) || 'LocaL storage is empty');
+   if (this.storage.get(STORAGE_KEY) == null) {
      this.router.navigate(['login']);
-   } else {
+   }
+   else {
+	   this.newsCounter = this.storage.get("newsCount" || '0');
+	   this.videosCounter = this.storage.get("videosCount" || '0');
    }
  }
 

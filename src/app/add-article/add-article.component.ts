@@ -21,6 +21,7 @@ export class AddArticleComponent implements OnInit {
   article_date: any;
   article_details: any;
   article_image: any;
+  img_name: any;
   
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
@@ -47,7 +48,7 @@ export class AddArticleComponent implements OnInit {
   
  saveFormData(form) {
 	 if(this.article_image){
-		this.newsService.addNews(this.article_title, this.article_details, this.article_date, this.article_image).then(
+		this.newsService.addNews(this.article_title, this.article_details, this.article_date, this.article_image, this.img_name).then(
 	   (res) => {
 		this.router.navigate(['articles']);
 	});
@@ -58,7 +59,8 @@ export class AddArticleComponent implements OnInit {
   }
   
  onSelectedFile(event) {
-	  const id = '/posts/' + event.target.files[0].name;
+	 this.img_name = event.target.files[0].name;
+	  const id = '/posts/' + this.img_name;
 	  this.ref = this.storage.ref(id);
 	  this.task = this.ref.put(event.target.files[0]);
 	  this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));

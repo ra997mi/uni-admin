@@ -22,6 +22,7 @@ export class EditArticleComponent implements OnInit{
   article_date: any;
   article_details: any;
   article_image: any;
+  img_name: any;
   
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
@@ -30,6 +31,7 @@ export class EditArticleComponent implements OnInit{
   downloadURL: Observable<string>;
 
   constructor(private router: ActivatedRoute,
+  private route: Router,
     public afAuth: AngularFireAuth,
     private storage: AngularFireStorage,
      public newsService: NewsService,
@@ -54,9 +56,9 @@ export class EditArticleComponent implements OnInit{
 
     saveFormData(form) {
 	if(this.article_image){
-        this.newsService.updateNews(this.article_id, this.article_title, this.article_details, this.article_date, this.article_image).then(
+        this.newsService.updateNews(this.article_id, this.article_title, this.article_details, this.article_date, this.article_image, this.img_name).then(
           (res) => {
-            this.router.navigate(['articles']);
+            this.route.navigate(['articles']);
         });
 	}
 	 else {
@@ -66,7 +68,8 @@ export class EditArticleComponent implements OnInit{
     }
     
  onSelectedFile(event) {
-	  const id = '/posts/' + event.target.files[0].name;
+	 this.img_name = event.target.files[0].name;
+	  const id = '/posts/' + this.img_name;
 	  this.ref = this.storage.ref(id);
 	  this.task = this.ref.put(event.target.files[0]);
 	  this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));

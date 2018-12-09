@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 const STORAGE_KEY = 'local_user';
 
+import {MessageService} from 'primeng/api';
+
 @Component({
   selector: 'app-videos',
   templateUrl: './videos.component.html',
@@ -17,13 +19,12 @@ export class VideosComponent implements OnInit, AfterViewInit {
   videosData: any;
   constructor(private firestoreService: NewsService,public afAuth: AngularFireAuth,
     private router: Router,
-    @Inject(SESSION_STORAGE) private storage: StorageService) {}
+    @Inject(SESSION_STORAGE) private storage: StorageService,
+	private messageService: MessageService) {}
 
  ngOnInit( ) {
-   console.log(this.storage
-     .get(STORAGE_KEY) || 'LocaL storage is empty');
-   if (this.storage
-     .get(STORAGE_KEY) == null) {
+   console.log(this.storage.get(STORAGE_KEY) || 'LocaL storage is empty');
+   if (this.storage.get(STORAGE_KEY) == null) {
      this.router.navigate(['login']);
    } else {
 	   this.videosList = this.firestoreService.getVideos().valueChanges();
@@ -32,12 +33,13 @@ export class VideosComponent implements OnInit, AfterViewInit {
    ngAfterViewInit(): void {
     this.videosList.subscribe( data => {
       this.videosData = data;
+	  this.storage.set("videosCount", this.videosData.length);
     });
   }
   
   deleteVideo(item) {
     this.firestoreService.deleteVideos(item).then( () => {
-      alert('تم الحذف بنجاح');
+      this.messageService.add({severity:'success', summary:'تم الحذف', detail:'تم حذف الفيديو بنجاح',life: 3000});
     });
   }
 updateVideo(item) {

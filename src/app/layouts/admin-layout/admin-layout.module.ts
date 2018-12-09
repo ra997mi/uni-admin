@@ -13,8 +13,6 @@ import { EditVideoComponent } from '../../edit-video/edit-video.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 
 import {ToastModule} from 'primeng/toast';
-import {MessageService} from 'primeng/api';
-
 import { YoutubePlayerModule } from 'ngx-youtube-player';
 
 import {

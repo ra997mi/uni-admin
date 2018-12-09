@@ -3,5 +3,6 @@ export interface newsdatatype{
     title:string,
     description:string,
 	date:string,
-    image:string
+    image:string,
+	imgname:string
 }
