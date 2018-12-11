@@ -8,6 +8,11 @@ import { EditArticleComponent } from '../../edit-article/edit-article.component'
 import { VideosComponent } from '../../videos/videos.component';
 import { AddVideoComponent } from '../../add-video/add-video.component';
 import { EditVideoComponent } from '../../edit-video/edit-video.component';
+import { AboutComponent } from '../../about/about.component';
+import { AddAboutComponent } from '../../add-about/add-about.component';
+import { ContactusComponent } from '../../contactus/contactus.component';
+import { AddContactComponent } from '../../add-contact/add-contact.component';
+
 
 export const AdminLayoutRoutes: Routes = [
 
@@ -18,4 +23,8 @@ export const AdminLayoutRoutes: Routes = [
 	{ path: 'videos',      component: VideosComponent, canActivate: [ AuthGuard]},
 	{ path: 'add-video',      component: AddVideoComponent, canActivate: [ AuthGuard]},
     { path: 'edit-video',      component: EditVideoComponent, canActivate: [ AuthGuard]},
+    { path: 'about',      component: AboutComponent, canActivate: [ AuthGuard]},
+	{ path: 'add-about',      component: AddAboutComponent, canActivate: [ AuthGuard]},
+    { path: 'contact',      component: ContactusComponent, canActivate: [ AuthGuard]},
+	{ path: 'add-contact',      component: AddContactComponent, canActivate: [ AuthGuard]},
 ];

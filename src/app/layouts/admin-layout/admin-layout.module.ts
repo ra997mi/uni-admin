@@ -11,9 +11,14 @@ import { VideosComponent } from '../../videos/videos.component';
 import { AddVideoComponent } from '../../add-video/add-video.component';
 import { EditVideoComponent } from '../../edit-video/edit-video.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
-
 import {ToastModule} from 'primeng/toast';
 import { YoutubePlayerModule } from 'ngx-youtube-player';
+import { AboutComponent } from '../../about/about.component';
+import { ContactusComponent } from '../../contactus/contactus.component';
+import { AddAboutComponent } from '../../add-about/add-about.component';
+import { AddContactComponent } from '../../add-contact/add-contact.component';
+
+import { AgmCoreModule } from '@agm/core';
 
 import {
   MatButtonModule,
@@ -42,6 +47,9 @@ import {
     EditorModule,
 	YoutubePlayerModule,
 	ToastModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDKutud3RktpgjJmFCXDCBBar9NFAhvo2Y'
+    })
   ],
   declarations: [
   DashboardComponent,
@@ -50,7 +58,11 @@ import {
   EditArticleComponent,
   VideosComponent,
   AddVideoComponent,
-  EditVideoComponent
+  EditVideoComponent,
+  AboutComponent,
+  ContactusComponent,
+  AddAboutComponent,
+  AddContactComponent
   ]
 })
 

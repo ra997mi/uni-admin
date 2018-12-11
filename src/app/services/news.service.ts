@@ -24,6 +24,32 @@ export class NewsService {
     });
   }
   
+    addAbout(vision: string, objectives: string, mission: string, departments: string): Promise<void> {
+    const id = 'uni-about';
+    return this.firestore.doc(`aboutList/${id}`).set({
+      vision,
+	  objectives,
+	  mission,
+	  departments
+    });
+  }
+    getAbout(): AngularFirestoreCollection<newsdatatype> {
+    return this.firestore.collection('aboutList');
+  }
+  
+    addContact(email: string, number: string, lat: string, lng: string): Promise<void> {
+    const id = 'uni-contact';
+    return this.firestore.doc(`contactList/${id}`).set({
+      email,
+	  number,
+	  lat,
+	  lng
+    });
+  }
+    getContact(): AngularFirestoreCollection<newsdatatype> {
+    return this.firestore.collection('contactList');
+  }
+  
     updateVideos(id, title, link): Promise<void> {
      return this.firestore.doc(`videosList/${id}`).set({
       id,
