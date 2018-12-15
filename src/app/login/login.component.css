@@ -10,3 +10,7 @@
   .full-width-input {
     width: 100%;
   }
+
+  .form-check .form-check-input:checked + .form-check-sign .check {
+    background: red;
+}
