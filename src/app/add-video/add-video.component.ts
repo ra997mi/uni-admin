@@ -32,13 +32,15 @@ export class AddVideoComponent implements OnInit {
     }
   }
   
-  async saveFormData(form) {
-
+  saveFormData(form) {
 	this.newsService.addVideos(this.video_title, this.video_link).then(
 		(res) => {
 			this.router.navigate(['videos']);
 			},(err) => {
         alert("خطا في ادخال البيانات");
     });
+  }
+  cancel(){
+	  this.router.navigate(['videos']);
   }
 }

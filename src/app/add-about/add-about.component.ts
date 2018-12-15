@@ -46,5 +46,9 @@ export class AddAboutComponent implements OnInit {
 		this.router.navigate(['about']);
 	});
   }
+  
+    cancel(){
+	  this.router.navigate(['about']);
+  }
 
 }

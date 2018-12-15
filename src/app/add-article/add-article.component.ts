@@ -73,4 +73,8 @@ export class AddArticleComponent implements OnInit {
 		  })
 		).subscribe();
 	}
+	
+	cancel(){
+		this.router.navigate(['articles']);
+	}
 }

@@ -46,5 +46,9 @@ export class AddContactComponent implements OnInit {
 		this.router.navigate(['contact']);
 	});
   }
+  
+    cancel(){
+	  this.router.navigate(['contact']);
+  }
 
 }
