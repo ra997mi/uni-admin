@@ -1,7 +1,8 @@
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject ,AfterViewInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
+import { NewsService } from '../services/news.service';
 const STORAGE_KEY = 'local_user';
 
 @Component({
@@ -9,13 +10,14 @@ const STORAGE_KEY = 'local_user';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit ,AfterViewInit{
 	
-	newsCounter;
-	videosCounter;
+  Counter;
+  CountData;
 
   constructor(public afAuth: AngularFireAuth,
     private router: Router,
+    private firestoreService : NewsService,
     @Inject(SESSION_STORAGE) private storage: StorageService) {}
 
  ngOnInit( ) {
@@ -24,9 +26,12 @@ export class DashboardComponent implements OnInit {
      this.router.navigate(['login']);
    }
    else {
-	   this.newsCounter = this.storage.get("newsCount" || '0');
-	   this.videosCounter = this.storage.get("videosCount" || '0');
+     this.Counter = this.firestoreService.getCount().valueChanges();
    }
  }
-
+ ngAfterViewInit(): void {
+  this.Counter.subscribe( data => {
+    this.CountData = data;
+  });
+}
 }

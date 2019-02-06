@@ -11,14 +11,14 @@ import { VideosComponent } from '../../videos/videos.component';
 import { AddVideoComponent } from '../../add-video/add-video.component';
 import { EditVideoComponent } from '../../edit-video/edit-video.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import {ToastModule} from 'primeng/toast';
+import { ToastModule } from 'primeng/toast';
 import { YoutubePlayerModule } from 'ngx-youtube-player';
 import { AboutComponent } from '../../about/about.component';
 import { ContactusComponent } from '../../contactus/contactus.component';
 import { AddAboutComponent } from '../../add-about/add-about.component';
 import { AddContactComponent } from '../../add-contact/add-contact.component';
-
 import { AgmCoreModule } from '@agm/core';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 import {
   MatButtonModule,
@@ -45,7 +45,8 @@ import {
     MatDatepickerModule,
     MatNativeDateModule,
     EditorModule,
-	YoutubePlayerModule,
+  YoutubePlayerModule,
+  Ng4LoadingSpinnerModule.forRoot(),
 	ToastModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDKutud3RktpgjJmFCXDCBBar9NFAhvo2Y'

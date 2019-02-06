@@ -23,9 +23,12 @@ import { NotifyComponent } from './notify/notify.component';
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 import { YoutubePlayerModule } from 'ngx-youtube-player';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+
 
 @NgModule({
   imports: [
+    Ng4LoadingSpinnerModule.forRoot(),
     BrowserAnimationsModule,
     FormsModule,
 	EditorModule,

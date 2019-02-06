@@ -25,3 +25,17 @@ body .ui-toast .ui-toast-message.ui-toast-message-success .ui-toast-close-icon{
 agm-map {
   height: 300px;
 }
+
+.mcorn{
+    border-radius:7px !important;
+}
+
+/* webkit solution */
+::-webkit-input-placeholder { text-align:right; }
+/* mozilla solution */
+input:-moz-placeholder { text-align:right; }
+
+body{
+    background: #fff;
+    background-color: #fff;
+}

@@ -36,11 +36,31 @@ export class NewsService {
     getAbout(): AngularFirestoreCollection<newsdatatype> {
     return this.firestore.collection('aboutList');
   }
+
+  updateCount(news:boolean, Counter: string){
+    const videos = 'VidCounter';
+    const newz = 'NewsCounter';
+    if(news){
+    let NewsCount = Counter;
+      return this.firestore.doc(`NewsCount/${newz}`).set({
+        NewsCount
+        });
+    } else{
+      let VideosCount = Counter;
+      return this.firestore.doc(`NewsCount/${videos}`).set({
+        VideosCount
+        });
+    }
+  }
+
+  getCount(){
+    return this.firestore.collection('NewsCount');
+  }
   
     addContact(email: string, number: string, lat: string, lng: string): Promise<void> {
     const id = 'uni-contact';
     return this.firestore.doc(`contactList/${id}`).set({
-      email,
+    email,
 	  number,
 	  lat,
 	  lng

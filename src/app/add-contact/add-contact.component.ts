@@ -32,10 +32,10 @@ export class AddContactComponent implements OnInit {
     }
 	else{
         this.route.params.subscribe( data => {
-          this.contact_email = data.email;
-          this.contact_number = data.number;
-          this.contact_map_lat = data.lat;
-		  this.contact_map_lng = data.lng;
+            this.contact_email = data.email;
+            this.contact_number = data.number;
+            this.contact_map_lat = data.lat;
+            this.contact_map_lng = data.lng;
         });
       }
   }

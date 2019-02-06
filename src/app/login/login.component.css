@@ -4,8 +4,7 @@
     text-align: center;
   }
   .signin-content {
-    padding: 60px 1rem;
-    margin-top : 100px;
+    padding: 150px 1rem;
   }
   .full-width-input {
     width: 100%;
@@ -13,4 +12,9 @@
 
   .form-check .form-check-input:checked + .form-check-sign .check {
     background: red;
+}
+
+.login-main{
+  height: 100vh;
+  background-image: linear-gradient(rgba(230, 61, 57, 0.5), rgba(0, 0, 0, 0.14)), url(/assets/img/log.jpg);
 }

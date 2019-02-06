@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { NewsService } from '../services/news.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 const STORAGE_KEY = 'local_user';
 
@@ -19,11 +20,12 @@ export class ArticlesComponent implements OnInit,  AfterViewInit {
     articlesData: any;
   constructor(private firestoreService: NewsService,public afAuth: AngularFireAuth,
     private router: Router,
+    private spinnerService: Ng4LoadingSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService,
 	private messageService: MessageService) {}
 
-  ngOnInit( ) {
-    console.log(this.storage.get(STORAGE_KEY) || 'LocaL storage is empty');
+  ngOnInit() {
+    this.spinnerService.show();
     if (this.storage.get(STORAGE_KEY) == null) {
       this.router.navigate(['login']);
     } else {
@@ -34,7 +36,9 @@ export class ArticlesComponent implements OnInit,  AfterViewInit {
   ngAfterViewInit(): void {
     this.newsList.subscribe( data => {
       this.articlesData = data;
-	  this.storage.set("newsCount", this.articlesData.length);
+      var counter = this.articlesData.length;
+      this.firestoreService.updateCount(true,counter);
+      this.spinnerService.hide();
     });
   }
   

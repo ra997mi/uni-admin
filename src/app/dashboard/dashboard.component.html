@@ -1,5 +1,6 @@
 <div class="main-content">
     <div class="container-fluid">
+            <ng4-loading-spinner> </ng4-loading-spinner>
       <div class="card">
           <div class="card-header card-header-danger">
               <h4 class="card-title" style="text-align: center">اللوحة الرئيسية</h4>
@@ -11,7 +12,6 @@
                       <h2>احصائيات</h2>
                   </div>
                   <div class="row">
-                    
                     <div class="col-md-6">
                         <div class="card card-stats">
                             <div class="card-header card-header-danger card-header-icon">
@@ -19,7 +19,7 @@
                                 <i class="material-icons">library_books</i>
                                 </div>
                                 <p class="card-category">عدد الاخبار المضافة</p>
-                                <h3 class="card-title">{{newsCounter}}</h3>
+                                <h3 class="card-title" *ngFor = "let i of CountData">{{i.NewsCount}}</h3>
                             </div>
 							<div class="card-footer"></div>
                         </div>
@@ -31,7 +31,7 @@
                                 <i class="material-icons">ondemand_video</i>
                                 </div>
                                 <p class="card-category">عدد الفيديوهات المضافة</p>
-                                <h3 class="card-title">{{videosCounter}}</h3>
+                                <h3 class="card-title" *ngFor = "let i of CountData">{{i.VideosCount}}</h3>
                             </div>
 							<div class="card-footer"></div>
                         </div>

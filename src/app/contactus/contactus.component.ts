@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { NewsService } from '../services/news.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 const STORAGE_KEY = 'local_user';
 
@@ -11,16 +12,21 @@ const STORAGE_KEY = 'local_user';
   templateUrl: './contactus.component.html',
   styleUrls: ['./contactus.component.scss']
 })
-export class ContactusComponent implements OnInit {
+export class ContactusComponent implements OnInit,AfterViewInit {
 
     contactList: Observable<any[]>;
-    contactData: any;
+    email: string;
+    number: string;
+    lat:string;
+    lng:string;
+
   constructor(private firestoreService: NewsService,public afAuth: AngularFireAuth,
     private router: Router,
+    private spinnerService: Ng4LoadingSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService) {}
 
   ngOnInit( ) {
-    console.log(this.storage.get(STORAGE_KEY) || 'LocaL storage is empty');
+    this.spinnerService.show();
     if (this.storage.get(STORAGE_KEY) == null) {
       this.router.navigate(['login']);
     } else {
@@ -30,12 +36,18 @@ export class ContactusComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.contactList.subscribe( data => {
-      this.contactData = data;
+      for(let i of data){
+        this.email = i.email;
+        this.number = i.number;
+        this.lat = i.lat;
+        this.lng = i.lng;
+      }
+      this.spinnerService.hide();
     });
   }
-  
-    addContact(item) {
-    this.router.navigate(['add-contact', item]);
+
+  addContact() {
+    this.router.navigate(['add-contact',{email:this.email, number:this.number, lat:this.lat, lng:this.lng}]);
   }
   
   getLat(lat) : number {
@@ -45,8 +57,4 @@ export class ContactusComponent implements OnInit {
    getLng(lng) : number {
 	  return parseFloat(lng);
   }
-  
-  
-  
-
 }
