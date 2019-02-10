@@ -12,6 +12,8 @@ import { AboutComponent } from '../../about/about.component';
 import { AddAboutComponent } from '../../add-about/add-about.component';
 import { ContactusComponent } from '../../contactus/contactus.component';
 import { AddContactComponent } from '../../add-contact/add-contact.component';
+import { NotifyComponent } from '../../notify/notify.component';
+import { AllNotifyComponent } from '../../all-notify/all-notify.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -26,5 +28,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'about',      component: AboutComponent, canActivate: [ AuthGuard]},
 	{ path: 'add-about',      component: AddAboutComponent, canActivate: [ AuthGuard]},
     { path: 'contact',      component: ContactusComponent, canActivate: [ AuthGuard]},
-	{ path: 'add-contact',      component: AddContactComponent, canActivate: [ AuthGuard]},
+    { path: 'add-contact',      component: AddContactComponent, canActivate: [ AuthGuard]},
+    { path: 'notify',      component: NotifyComponent, canActivate: [ AuthGuard]},
+    { path: 'all-notify',      component: AllNotifyComponent, canActivate: [ AuthGuard]}
 ];

@@ -9,22 +9,20 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireStorageModule } from 'angularfire2/storage';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from '@angular/fire/';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { NewsService } from './services/news.service';
 import { AuthGuard } from './core/auth.guard';
 import { APP_BASE_HREF } from '@angular/common';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
-import { NotifyComponent } from './notify/notify.component';
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
 import { YoutubePlayerModule } from 'ngx-youtube-player';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
-
 
 @NgModule({
   imports: [
@@ -43,13 +41,12 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule,
 	ToastModule,
-    YoutubePlayerModule,
+    YoutubePlayerModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent,
-    NotifyComponent,
+    LoginComponent
   ],
   providers: [MessageService,DatePipe, NewsService, AuthGuard, {provide: APP_BASE_HREF, useValue : ''}],
   bootstrap: [AppComponent]

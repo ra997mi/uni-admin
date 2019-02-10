@@ -1,7 +1,5 @@
-import { Observable } from 'rxjs';
-import { NewsService } from '../services/news.service';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit, Inject } from '@angular/core';
+import { NewsService } from '../services/news.service';
 import { Router,ActivatedRoute } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 const STORAGE_KEY = 'local_user';

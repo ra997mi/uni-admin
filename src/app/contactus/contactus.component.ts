@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NewsService } from '../services/news.service';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
@@ -20,7 +19,7 @@ export class ContactusComponent implements OnInit,AfterViewInit {
     lat:string;
     lng:string;
 
-  constructor(private firestoreService: NewsService,public afAuth: AngularFireAuth,
+  constructor(private firestoreService: NewsService,
     private router: Router,
     private spinnerService: Ng4LoadingSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService) {}

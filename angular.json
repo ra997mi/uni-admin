@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "material-dashboard-angular": {
+    "uni-project": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -26,7 +26,7 @@
 			  "node_modules/primeicons/primeicons.css",
 			  "node_modules/primeng/resources/themes/nova-light/theme.css",
 			  "node_modules/primeng/resources/primeng.min.css",
-			  "src/styles.css"
+        "src/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "material-dashboard-angular:build"
+            "browserTarget": "uni-project:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "material-dashboard-angular:build:production"
+              "browserTarget": "uni-project:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "material-dashboard-angular:build"
+            "browserTarget": "uni-project:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
             ],
             "styles": [
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
-              "src/assets/scss/material-dashboard.scss",
+              "src/assets/scss/material-dashboard.scss"
             ],
             "assets": [
               "src/assets",
@@ -115,7 +115,7 @@
         }
       }
     },
-    "material-dashboard-angular-e2e": {
+    "uni-project-e2e": {
       "root": "",
       "sourceRoot": "",
       "projectType": "application",
@@ -124,7 +124,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "material-dashboard-angular:serve"
+            "devServerTarget": "uni-project:serve"
           }
         },
         "lint": {
@@ -139,7 +139,7 @@
       }
     }
   },
-  "defaultProject": "material-dashboard-angular",
+  "defaultProject": "uni-project",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
-
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +10,7 @@ export class AuthService {
 
   getCurrentUser() {
     return new Promise<any>((resolve, reject) => {
-      const user = firebase.auth().onAuthStateChanged((loggedin) => {
+      const user = this.afAuth.auth.onAuthStateChanged((loggedin) => {
         if (loggedin) {
           resolve(loggedin);
         } else {
@@ -22,6 +20,6 @@ export class AuthService {
     });
   }
   logout(): Promise<any> {
-    return firebase.auth().signOut();
+    return this.afAuth.auth.signOut();
   }
 }

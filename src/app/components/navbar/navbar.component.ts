@@ -3,7 +3,7 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
 
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 const STORAGE_KEY = 'local_user';
 
@@ -24,12 +24,6 @@ export class NavbarComponent implements OnInit {
   @Inject(SESSION_STORAGE) private storage: StorageService) {
       this.location = location;
           this.sidebarVisible = false;
-    }
-  
-  logout() {
-    this.afAuth.auth.signOut();
-    this.storage.set(STORAGE_KEY, null);
-    this.router.navigate(['login']);
     }
 
     ngOnInit(){

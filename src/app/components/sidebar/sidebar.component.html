@@ -7,18 +7,17 @@
     </a>
 </div>
 <div class="sidebar-wrapper">
-  <div *ngIf="isMobileMenu()">
-    <ul class="nav navbar-nav nav-mobile-menu">
-        <li class="nav-item" style = "margin: 0 15px;">
-            <button mat-raised-button class="btn btn-danger" style = "width:100%" (click) = "logout()"> خروج</button>
-		</li>
-    </ul>
-  </div>
     <ul class="nav">
         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-            <a class="nav-link" [routerLink]="[menuItem.path]">
+            <a class="nav-link hvr-grow" [routerLink]="[menuItem.path]">
                 <i class="material-icons">{{menuItem.icon}}</i>
                 <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link hvr-grow" (click)="logout()">
+                <i class="material-icons">exit_to_app</i>
+                <p>تسجيل الخروج</p>
             </a>
         </li>
     </ul>

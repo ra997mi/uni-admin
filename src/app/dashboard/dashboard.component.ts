@@ -1,4 +1,3 @@
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit, Inject ,AfterViewInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
@@ -15,13 +14,11 @@ export class DashboardComponent implements OnInit ,AfterViewInit{
   Counter;
   CountData;
 
-  constructor(public afAuth: AngularFireAuth,
-    private router: Router,
+  constructor(private router: Router,
     private firestoreService : NewsService,
     @Inject(SESSION_STORAGE) private storage: StorageService) {}
 
  ngOnInit( ) {
-   console.log(this.storage.get(STORAGE_KEY) || 'LocaL storage is empty');
    if (this.storage.get(STORAGE_KEY) == null) {
      this.router.navigate(['login']);
    }

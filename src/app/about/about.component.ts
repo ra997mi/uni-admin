@@ -1,7 +1,6 @@
-import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Inject} from '@angular/core';
 import { Observable } from 'rxjs';
 import { NewsService } from '../services/news.service';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -19,7 +18,7 @@ export class AboutComponent implements OnInit {
     objectives;
     mission;
     departments;
-  constructor(private firestoreService: NewsService,public afAuth: AngularFireAuth,
+  constructor(private firestoreService: NewsService,
     private router: Router,
     private spinnerService: Ng4LoadingSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService) {}

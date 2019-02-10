@@ -1,6 +1,4 @@
-import { Observable } from 'rxjs';
 import { NewsService } from '../services/news.service';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
@@ -24,8 +22,6 @@ export class AddContactComponent implements OnInit {
 
 
   ngOnInit( ) {
-    console.log(this.mstorage
-      .get(STORAGE_KEY) || 'LocaL storage is empty');
     if (this.mstorage
       .get(STORAGE_KEY) == null) {
       this.router.navigate(['login']);

@@ -1,9 +1,8 @@
 import { Observable } from 'rxjs';
 import { NewsService } from '../services/news.service';
-import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { map } from 'rxjs/operators/map';
 import {finalize} from 'rxjs/operators';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit, Inject } from '@angular/core';
 import {MessageService} from 'primeng/api';
 import { Router,ActivatedRoute } from '@angular/router';
@@ -32,15 +31,12 @@ export class EditArticleComponent implements OnInit{
 
   constructor(private router: ActivatedRoute,
   private route: Router,
-    public afAuth: AngularFireAuth,
     private storage: AngularFireStorage,
      public newsService: NewsService,
      @Inject(SESSION_STORAGE) private mstorage: StorageService,
 	 private messageService: MessageService) {}
   
     ngOnInit( ) {
-      console.log(this.mstorage
-        .get(STORAGE_KEY) || 'LocaL storage is empty');
       if (this.mstorage
         .get(STORAGE_KEY) == null) {
         this.route.navigate(['login']);

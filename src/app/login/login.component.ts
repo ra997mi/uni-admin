@@ -1,4 +1,4 @@
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, Inject } from '@angular/core';
 import { NewsService } from '../services/news.service';
 import { Router } from '@angular/router';
@@ -15,16 +15,15 @@ import {MessageService} from 'primeng/api';
 })
 export class LoginComponent{
 
-// variable
 show: boolean;
 
 password() {
     this.show = !this.show;
 }
 
-  constructor(public afAuth: AngularFireAuth,
-    public newsService: NewsService, private router: Router,
-     @Inject(SESSION_STORAGE) private storage: StorageService,
+  constructor(private afAuth: AngularFireAuth,
+    private newsService: NewsService, private router: Router,
+    @Inject(SESSION_STORAGE) private storage: StorageService,
    private messageService: MessageService,
    private spinnerService: Ng4LoadingSpinnerService) {
     this.show = false;

@@ -8,12 +8,16 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-lg-4" *ngFor="let item of videosData" style="margin-top: 25px;">
+                    <div id="no-items-ava">
+                        <img src="assets/img/youtube.svg">
+                        <p style="font-weight: bold; margin:10px">لا يوجد عناصر</p>
+                    </div>                    
+                    <div id="SHOW" class="col-md-6 col-sm-6 col-lg-4" *ngFor="let item of videosData" style="margin-top: 25px;">
                         <div class="card card-profile">
                             <div class="card-body">
 							<youtube-player [videoId]="youtube_parser(item.link)" [height]= "140" [width]="240"></youtube-player><hr>
                                 <h6 class="card-category text-gray">{{item.title}}</h6>							
-                                <button class="btn btn-danger btn-round btn-sm" (click)="updateVideo(item)"><i class="material-icons">edit</i></button>
+                                <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(item)"><i class="material-icons">edit</i></button>
                                 <button class="btn btn-danger btn-round btn-sm" (click)="deleteVideo(item.id)"><i class="material-icons">delete</i></button>
                             </div>
                        </div>

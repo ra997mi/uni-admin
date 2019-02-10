@@ -1,12 +1,12 @@
 import { Component, OnInit,Inject, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NewsService } from '../services/news.service';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 const STORAGE_KEY = 'local_user';
-
+import {ConfirmDeleteComponent} from '../confirm-delete/confirm-delete.component'
+import {MatDialog} from "@angular/material";
 import {MessageService} from 'primeng/api';
 
 @Component({
@@ -18,15 +18,23 @@ export class VideosComponent implements OnInit, AfterViewInit {
 
   videosList: Observable<any[]>;
   videosData: any;
-  constructor(private firestoreService: NewsService,public afAuth: AngularFireAuth,
+  constructor(private firestoreService: NewsService,
     private router: Router,
     private spinnerService: Ng4LoadingSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService,
-	private messageService: MessageService) {}
+    private messageService: MessageService,
+    private dialog: MatDialog) {}
+
+    openDialog(item): void {
+      const dialogRef = this.dialog.open(ConfirmDeleteComponent);
+      dialogRef.afterClosed().subscribe(result => {
+        if(result == 'true')
+        this.deleteVideo(item);
+      });
+    }
 
  ngOnInit() {
   this.spinnerService.show();
-   console.log(this.storage.get(STORAGE_KEY) || 'LocaL storage is empty');
    if (this.storage.get(STORAGE_KEY) == null) {
      this.router.navigate(['login']);
    } else {
@@ -35,9 +43,17 @@ export class VideosComponent implements OnInit, AfterViewInit {
  }
    ngAfterViewInit(): void {
     this.videosList.subscribe( data => {
+      if(data.length == 0){
+        $('#no-items-ava').show();
+        $('#SHOW').hide();
+      } 
+      else{
+        $('#no-items-ava').hide();
+        $('#SHOW').show();
+      }
       this.videosData = data;
       var counter = this.videosData.length;
-      this.firestoreService.updateCount(false,counter);
+      this.firestoreService.updateCount(2,counter);
       this.spinnerService.hide();
 
     });

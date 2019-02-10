@@ -1,41 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
 
+body .ui-widget {
+    font-family: 'Cairo', sans-serif;
+}
+
 body .ui-toast .ui-toast-message.ui-toast-message-warn {
     background-color: linear-gradient(60deg, #ef5350, #e53935);
 	background: linear-gradient(60deg, #ef5350, #e53935);
     border: 0 none;
     color: #fff;
+    border-radius: 10px;
 }
 
 body .ui-toast .ui-toast-message.ui-toast-message-success {
-    background-color: linear-gradient(60deg, #00C853, #64DD17);
-	background: linear-gradient(60deg, #00C853, #64DD17);
+    background-color: linear-gradient(60deg, #ef5350, #e53935);
+	background: linear-gradient(60deg, #ef5350, #e53935);
     border: 0 none;
     color: #fff;
+    border-radius: 10px;
 }
 
 body .ui-toast .ui-toast-message.ui-toast-message-warn .ui-toast-close-icon{
-	color: #fff;
+    color: #fff;
 }
 
 body .ui-toast .ui-toast-message.ui-toast-message-success .ui-toast-close-icon{
-	color: #fff;
+    color: #fff;
 }
 
 agm-map {
   height: 300px;
 }
 
-.mcorn{
-    border-radius:7px !important;
+button {
+    border-radius:10px !important;
 }
 
-/* webkit solution */
+.card .card-header-danger .card-icon, .card .card-header-danger .card-text, .card .card-header-danger:not(.card-header-icon):not(.card-header-text), .card.bg-danger, .card.card-rotate.bg-danger .front, .card.card-rotate.bg-danger .back{
+    border-radius:10px !important;
+}
+
 ::-webkit-input-placeholder { text-align:right; }
-/* mozilla solution */
 input:-moz-placeholder { text-align:right; }
 
 body{
     background: #fff;
     background-color: #fff;
+}
+.navbar.navbar-transparent {
+    direction: rtl;
+}
+
+#no-items-ava{
+    display: none;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 60px;
+    margin-top: 50px;
+    width: 140px;
+    height: 140px;
+    font-size: 20px;
 }

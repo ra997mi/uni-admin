@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireStorage} from 'angularfire2/storage';
-
-import * as firebase from 'firebase/app';
-
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireStorage} from '@angular/fire/storage';
 import { newsdatatype } from '../services/newsdatatype';
+import {formatDate } from '@angular/common';
+
+import * as firebase from 'firebase/app'
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewsService {
 
-  constructor(public firestore: AngularFirestore, public afAuth: AngularFireAuth,private storage: AngularFireStorage,) {}
+  constructor(private firestore: AngularFirestore, private afAuth: AngularFireAuth, private storage: AngularFireStorage) {}
   
     addVideos(title: string, link: string): Promise<void> {
     const id = this.firestore.createId();
@@ -22,6 +21,26 @@ export class NewsService {
       title,
 	  link,
     });
+  }
+
+  addEvent(title: string, content: string): Promise<void> {
+    let today= new Date();
+    let mDate = formatDate(today, 'dd-MM-yyyy hh:mm:ss a', 'en-US');
+    const id = this.firestore.createId();
+    return this.firestore.doc(`eventList/${id}`).set({
+      id,
+      title,
+      content,
+      mDate
+    });
+  }
+
+  getEvents(): AngularFirestoreCollection<newsdatatype> {
+    return this.firestore.collection('eventList');
+  }
+
+  deleteEvent(eventid: string): Promise<void> {
+    return this.firestore.doc(`eventList/${eventid}`).delete();
   }
   
     addAbout(vision: string, objectives: string, mission: string, departments: string): Promise<void> {
@@ -37,18 +56,25 @@ export class NewsService {
     return this.firestore.collection('aboutList');
   }
 
-  updateCount(news:boolean, Counter: string){
+  updateCount(news:number, Counter: string){
     const videos = 'VidCounter';
     const newz = 'NewsCounter';
-    if(news){
+    const notify = 'NotifyCounter';
+    if(news == 1){
     let NewsCount = Counter;
       return this.firestore.doc(`NewsCount/${newz}`).set({
         NewsCount
         });
-    } else{
+    } else if(news == 2){
       let VideosCount = Counter;
       return this.firestore.doc(`NewsCount/${videos}`).set({
         VideosCount
+        });
+    }
+    else if(news == 3){
+      let NotifyCounter = Counter;
+      return this.firestore.doc(`NewsCount/${notify}`).set({
+        NotifyCounter
         });
     }
   }
@@ -116,8 +142,6 @@ export class NewsService {
     return this.firestore.doc(`newsList/${newsid}`).delete();
   }
   async login(email , password) {
-    return await this.afAuth.auth.signInWithEmailAndPassword(email , password)
-      .then(res => {
-      });
+    return await this.afAuth.auth.signInWithEmailAndPassword(email , password);
   }
 }

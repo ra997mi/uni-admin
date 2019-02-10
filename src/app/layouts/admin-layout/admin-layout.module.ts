@@ -17,8 +17,12 @@ import { AboutComponent } from '../../about/about.component';
 import { ContactusComponent } from '../../contactus/contactus.component';
 import { AddAboutComponent } from '../../add-about/add-about.component';
 import { AddContactComponent } from '../../add-contact/add-contact.component';
+import { NotifyComponent } from '../../notify/notify.component';
+import { AllNotifyComponent } from '../../all-notify/all-notify.component';
 import { AgmCoreModule } from '@agm/core';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+
+import { ConfirmDeleteComponent } from '../../confirm-delete/confirm-delete.component';
 
 import {
   MatButtonModule,
@@ -28,7 +32,8 @@ import {
   MatTooltipModule,
   MatSelectModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatDialogModule
 } from '@angular/material';
 
 @NgModule({
@@ -44,6 +49,7 @@ import {
     MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatDialogModule,
     EditorModule,
   YoutubePlayerModule,
   Ng4LoadingSpinnerModule.forRoot(),
@@ -63,8 +69,12 @@ import {
   AboutComponent,
   ContactusComponent,
   AddAboutComponent,
-  AddContactComponent
-  ]
+  AddContactComponent,
+  NotifyComponent,
+  AllNotifyComponent,
+  ConfirmDeleteComponent
+  ],
+  entryComponents:[ConfirmDeleteComponent]
 })
 
 export class AdminLayoutModule {}

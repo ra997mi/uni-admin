@@ -8,28 +8,29 @@ const STORAGE_KEY = 'local_user';
 import {ConfirmDeleteComponent} from '../confirm-delete/confirm-delete.component'
 import {MatDialog} from "@angular/material";
 import {MessageService} from 'primeng/api';
+import * as $ from 'jquery'
 
 @Component({
-  selector: 'app-articles',
-  templateUrl: './articles.component.html',
-  styleUrls: ['./articles.component.scss']
+  selector: 'app-all-notify',
+  templateUrl: './all-notify.component.html',
+  styleUrls: ['./all-notify.component.scss']
 })
-export class ArticlesComponent implements OnInit, AfterViewInit {
-	
-    newsList: Observable<any[]>;
-    articlesData: any;
+export class AllNotifyComponent implements OnInit, AfterViewInit  {
+
+  notifyList: Observable<any[]>;
+  notifyData: any;
+
   constructor(private firestoreService: NewsService,
-    private router: Router,
-    private spinnerService: Ng4LoadingSpinnerService,
+    private router: Router,private spinnerService: Ng4LoadingSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService,
     private messageService: MessageService,
     private dialog: MatDialog) {}
-  
-  openDialog(item,img): void {
+
+  openDialog(item): void {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent);
     dialogRef.afterClosed().subscribe(result => {
       if(result == 'true')
-      this.deleteArticle(item,img);
+      this.deleteEvent(item);
     });
   }
 
@@ -38,40 +39,35 @@ export class ArticlesComponent implements OnInit, AfterViewInit {
     if (this.storage.get(STORAGE_KEY) == null) {
       this.router.navigate(['login']);
     } else {
-      this.newsList = this.firestoreService.getNews().valueChanges();
+      this.notifyList = this.firestoreService.getEvents().valueChanges();
     }
   }
 
   ngAfterViewInit(): void {
-    this.newsList.subscribe( data => {
+    this.notifyList.subscribe( data => {
       if(data.length == 0){
         $('#no-items-ava').show();
         $('#SHOW').hide();
       }
       else{
         $('#no-items-ava').hide();
-        $('#SHOW').show();        
+        $('#SHOW').show();
+        this.notifyData = data;
+        var counter = this.notifyData.length;
+        this.firestoreService.updateCount(3,counter);
+        this.spinnerService.hide();
       }
-      this.articlesData = data;
-      var counter = this.articlesData.length;
-      this.firestoreService.updateCount(1,counter);
-      this.spinnerService.hide();
     });
   }
-  
-toHTML(input) : any {
-		return new DOMParser().parseFromString(input, "text/html").documentElement.textContent.substring(0,300) + '...';
-}
 
-deleteArticle(item,img) {
-    this.firestoreService.deleteNews(item,img).then( () => {
+  deleteEvent(item) {
+    this.firestoreService.deleteEvent(item).then( () => {
       this.messageService.add({severity:'success', summary:'تم الحذف', detail:'تم حذف الخبر بنجاح',life: 3000});
     });
   }
-updateArticle(item) {
-    this.router.navigate(['edit-article', item]);
-  }
-  addArticle() {
-    this.router.navigate(['add-article']);
+
+  addEvent(){
+    this.router.navigate(['notify']);
   }
 }
+

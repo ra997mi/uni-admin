@@ -8,7 +8,11 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-lg-4" *ngFor="let item of articlesData" style="margin-top: 25px;">
+                    <div id="no-items-ava">
+                        <img src="assets/img/news.svg">
+                        <p style="font-weight: bold; margin:10px">لا يوجد عناصر</p>
+                    </div>                    
+                    <div id="SHOW" class="col-md-6 col-sm-6 col-lg-4" *ngFor="let item of articlesData" style="margin-top: 25px;">
                         <div class="card card-profile">
                             <div class="card-avatar">
                                 <a href="#pablo">
@@ -21,7 +25,7 @@
 								<i class="material-icons">update</i>
 								<h6 class="card-title">{{item.date.toDate() | date: "fullDate"}}</h6>
 								<button class="btn btn-danger btn-round btn-sm" (click)="updateArticle(item)"><i class="material-icons">edit</i></button>
-                                <button class="btn btn-danger btn-round btn-sm" (click)="deleteArticle(item.id, item.imgname)"><i class="material-icons">delete</i></button>
+                                <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(item.id, item.imgname)"><i class="material-icons">delete</i></button>
                             </div>
                        </div>
                     </div>                    

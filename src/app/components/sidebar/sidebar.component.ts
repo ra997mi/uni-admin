@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 const STORAGE_KEY = 'local_user';
@@ -16,7 +16,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/articles', title: 'لوحة الاخبار',  icon: 'library_books', class: '' },
     { path: '/videos', title: 'لوحة الفيديوهات',  icon: 'movie', class: '' },
     { path: '/about', title: 'لوحة المعلومات',  icon: 'info', class: '' },
-	{ path: '/contact', title: 'لوحة الاتصال',  icon: 'email', class: '' },
+    { path: '/contact', title: 'لوحة الاتصال',  icon: 'email', class: '' },
+    { path: '/all-notify', title: 'لوحة الاحداث',  icon: 'notifications', class: '' }
 ];
 
 @Component({
