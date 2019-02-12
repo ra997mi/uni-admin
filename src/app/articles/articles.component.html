@@ -14,16 +14,12 @@
                     </div>                    
                     <div id="SHOW" class="col-md-6 col-sm-6 col-lg-4" *ngFor="let item of articlesData" style="margin-top: 25px;">
                         <div class="card card-profile">
-                            <div class="card-avatar">
-                                <a href="#pablo">
-                                    <img class="img" src="{{item.image}}" />
-                                </a>
-                            </div>
+                            <img class="card-img-top" src="{{item.image}}">
                             <div class="card-body">
                                 <h6 class="card-category text-gray">{{item.title}}</h6><hr>
                                 <p class="card-description" [innerHTML]="toHTML(item.description)"></p>
 								<i class="material-icons">update</i>
-								<h6 class="card-title">{{item.date.toDate() | date: "fullDate"}}</h6>
+								<h6 class="card-title">{{item.date}}</h6>
 								<button class="btn btn-danger btn-round btn-sm" (click)="updateArticle(item)"><i class="material-icons">edit</i></button>
                                 <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(item.id, item.imgname)"><i class="material-icons">delete</i></button>
                             </div>

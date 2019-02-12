@@ -2,7 +2,6 @@ import { NewsService } from '../services/news.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
-import {MessageService} from 'primeng/api';
 const STORAGE_KEY = 'local_user';
 
 @Component({
@@ -17,7 +16,6 @@ export class NotifyComponent implements OnInit {
 
   constructor(private router: Router,
      public newsService: NewsService,
-     private messageService: MessageService,
      @Inject(SESSION_STORAGE) private mstorage: StorageService) {}
 
   ngOnInit() {
@@ -30,11 +28,8 @@ export class NotifyComponent implements OnInit {
   saveFormData(form) {
 	this.newsService.addEvent(this.event_title, this.event_content).then(
 		(res) => {
-      this.messageService.add({severity:'warn', summary:'تم الارسال', detail:'تم ارسال الحدث بنجاح',life: 3000});
       this.router.navigate(['all-notify']);
-			},(err) => {
-        alert("خطا في ادخال البيانات");
-    });
+			});
   }
   cancel(){
 	  this.router.navigate(['all-notify']);

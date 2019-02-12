@@ -9,6 +9,8 @@ import {MessageService} from 'primeng/api';
 import { Router } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 const STORAGE_KEY = 'local_user';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-add-article',
@@ -41,11 +43,13 @@ export class AddArticleComponent implements OnInit {
       .get(STORAGE_KEY) == null) {
       this.router.navigate(['login']);
     }
-  }
+	}
   
  saveFormData(form) {
+		const datePipe = new DatePipe('en-US');
+		const myFormattedDate = datePipe.transform(this.article_date, 'EEEE, MMMM d');
 	 if(this.article_image){
-		this.newsService.addNews(this.article_title, this.article_details, this.article_date, this.article_image, this.img_name).then(
+		this.newsService.addNews(this.article_title, this.article_details, myFormattedDate, this.article_image, this.img_name).then(
 	   (res) => {
 		this.router.navigate(['articles']);
 	});

@@ -25,7 +25,7 @@ export class NewsService {
 
   addEvent(title: string, content: string): Promise<void> {
     let today= new Date();
-    let mDate = formatDate(today, 'dd-MM-yyyy hh:mm:ss a', 'en-US');
+    let mDate = formatDate(today, 'EEEE, MMMM d', 'en-US');
     const id = this.firestore.createId();
     return this.firestore.doc(`eventList/${id}`).set({
       id,
@@ -111,7 +111,7 @@ export class NewsService {
     return this.firestore.doc(`videosList/${videosid}`).delete();
   }
   
-  addNews(title: string, description: string, date: string, image: string, imgname: string): Promise<void> {
+  addNews(title, description, date, image, imgname): Promise<void> {
     const id = this.firestore.createId();
     return this.firestore.doc(`newsList/${id}`).set({
       id,
