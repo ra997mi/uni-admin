@@ -1,52 +1,64 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+    --main-bg-color: #ef5350;
+    --main-se-color: #e04d4b;
+    --white-color:#fff;
+}
 
-body .ui-widget {
+.default-color{
+    color: var(--main-bg-color);
+}
+
+.default-bg-color{
+    background-color: var(--main-bg-color);
+}
+
+.btn.btn-danger{
+    color: var(--white-color);
+    background-color: var(--main-bg-color);
+    border-color: var(--main-bg-color);
+    box-shadow: unset;
+}
+
+iframe {
+    width: auto !important;
+    margin: 0 auto !important;
+}
+
+youtube-player{
+    width: auto !important;
+    margin: 0 auto !important;
+}
+
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, span {
     font-family: 'Cairo', sans-serif;
 }
 
-body .ui-toast .ui-toast-message.ui-toast-message-warn {
-    background-color: linear-gradient(60deg, #ef5350, #e53935);
-	background: linear-gradient(60deg, #ef5350, #e53935);
-    border: 0 none;
-    color: #fff;
-    border-radius: 10px;
-}
-
-body .ui-toast .ui-toast-message.ui-toast-message-success {
-    background-color: linear-gradient(60deg, #ef5350, #e53935);
-	background: linear-gradient(60deg, #ef5350, #e53935);
-    border: 0 none;
-    color: #fff;
-    border-radius: 10px;
-}
-
-body .ui-toast .ui-toast-message.ui-toast-message-warn .ui-toast-close-icon{
-    color: #fff;
-}
-
-body .ui-toast .ui-toast-message.ui-toast-message-success .ui-toast-close-icon{
-    color: #fff;
-}
-
-agm-map {
-  height: 300px;
-}
-
-button {
-    border-radius:10px !important;
+body{
+    background-color: var(--white-color);
 }
 
 .card .card-header-danger .card-icon, .card .card-header-danger .card-text, .card .card-header-danger:not(.card-header-icon):not(.card-header-text), .card.bg-danger, .card.card-rotate.bg-danger .front, .card.card-rotate.bg-danger .back{
     border-radius:10px !important;
+    background: var(--main-bg-color) !important;
+    box-shadow:unset !important;
+}
+
+.mat-button.btn.btn-danger:focus, .mat-button.btn.btn-danger.focus, .mat-button.btn.btn-danger:hover, .mat-raised-button.btn.btn-danger:focus, .mat-raised-button.btn.btn-danger.focus, .mat-raised-button.btn.btn-danger:hover, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-danger:focus, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-danger.focus, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-danger:hover, .btn.btn-danger:focus, .btn.btn-danger.focus, .btn.btn-danger:hover{
+    border-radius:10px !important;
+    background: var(--main-se-color) !important;
+    box-shadow:unset !important;  
+}
+
+.mat-button.btn.btn-danger, .mat-raised-button.btn.btn-danger, .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-danger, .btn.btn-danger{
+    border-radius:10px !important;
+    background: var(--main-se-color) !important;
+    box-shadow:unset !important;    
 }
 
 ::-webkit-input-placeholder { text-align:right; }
 input:-moz-placeholder { text-align:right; }
+.mat-form-field{text-align:right !important;}
 
-body{
-    background: #fff;
-    background-color: #fff;
-}
 .navbar.navbar-transparent {
     direction: rtl;
 }
@@ -61,4 +73,34 @@ body{
     width: 140px;
     height: 140px;
     font-size: 20px;
+}
+
+.card-block {
+    direction: rtl;
+}
+.card-title{
+    font-weight: bold;
+    color:var(--main-bg-color);
+}
+
+#map {
+    height: 300px;
+}
+
+.la-square-loader.la-2x{
+    color:var(--main-bg-color) !important;
+}
+
+.form-control:invalid, .form-control, .is-focused .form-control{
+    background-image: linear-gradient(to top, var(--main-bg-color) 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+}
+
+.sidebar[data-color="danger"] li.active > a{
+    background-color:var(--main-bg-color);
+    box-shadow: unset;
+}
+
+#toast-container > div {
+    background: var(--main-bg-color);
+    opacity:1;
 }

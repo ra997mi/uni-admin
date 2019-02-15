@@ -19,36 +19,40 @@ import { AuthGuard } from './core/auth.guard';
 import { APP_BASE_HREF } from '@angular/common';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
-import {ToastModule} from 'primeng/toast';
-import {MessageService} from 'primeng/api';
 import { YoutubePlayerModule } from 'ngx-youtube-player';
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
-    Ng4LoadingSpinnerModule.forRoot(),
     BrowserAnimationsModule,
     FormsModule,
-	EditorModule,
+    EditorModule,
     ReactiveFormsModule,
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
     StorageServiceModule,
-	AngularFireDatabaseModule,
-	AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
     AngularFireStorageModule,
-	ToastModule,
-    YoutubePlayerModule
+    YoutubePlayerModule,
+    NgxSpinnerModule,
+    ToastrModule.forRoot({
+    closeButton: true,
+    timeOut: 5000,
+    positionClass: 'toast-bottom-center',
+    preventDuplicates: true,
+    })
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     LoginComponent
   ],
-  providers: [MessageService,DatePipe, NewsService, AuthGuard, {provide: APP_BASE_HREF, useValue : ''}],
+  providers: [DatePipe, NewsService, AuthGuard, {provide: APP_BASE_HREF, useValue : ''}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,5 @@
 <div class="main-content">
     <div class="container-fluid">
-            <ng4-loading-spinner> </ng4-loading-spinner>
       <div class="card">
           <div class="card-header card-header-danger">
               <h4 class="card-title" style="text-align: center">لوحة الاتصال</h4>
@@ -9,21 +8,19 @@
           </div>
           <div class="card-body">
               <div id="typography">
-                  <div class="card-title" style="text-align: center">
-                      <h2>البريد الالكتروني</h2>
+                  <div style="text-align: center">
+                      <h2 class="default-color">البريد الالكتروني</h2>
 					  <p>{{email}}</p>
                   </div>
 				  <hr>
-                  <div class="card-title" style="text-align: center">
-                      <h2>رقم الهاتف</h2>
+                  <div style="text-align: center">
+                      <h2 class="default-color">رقم الهاتف</h2>
 					  <p>{{number}}</p>
                   </div>
 				  <hr>
                   <div class="card-title" style="text-align: center">
-                      <h2>عنوان الجامعة</h2>
-						<agm-map [latitude]="getLat(lat)" [longitude]="getLng(lng)">
-						  <agm-marker [latitude]="getLat(lat)" [longitude]="getLng(lng)"></agm-marker>
-						</agm-map>
+                    <h2 class="default-color">عنوان الجامعة</h2>
+                    <div id="map"></div>
                   </div>
 				  <hr>			  
                 </div>

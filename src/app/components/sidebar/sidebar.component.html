@@ -1,9 +1,9 @@
 <div class="logo">
     <a class="simple-text">
-        <div class="logo-img">
-            <img src="/assets/img/uni-logo.png"/>
+        <div class="logo-img" *ngFor= "let i of settingsData">
+            <img style = "border-radius: 10px;" src ="{{i.logo}}"/>
         </div>
-        UOITC
+        جامعتي
     </a>
 </div>
 <div class="sidebar-wrapper">

@@ -1,9 +1,8 @@
 <div class="main-content">
   <div class="container-fluid">
-          <ng4-loading-spinner> </ng4-loading-spinner>
       <div class="card">
           <div class="card-header card-header-danger">
-              <h3 class="card-title" style="text-align: center">لوحة الاشعارات الرئيسية</h3>
+              <h3 class="card-title" style="text-align: center">لوحة الاحداث الرئيسية</h3>
               <button mat-raised-button  class="btn btn-danger btn-round pull-right" (click)="addEvent()"><i class="material-icons">control_point</i> اضافة حدث جديد</button>
           </div>
           <div class="card-body">
@@ -14,17 +13,15 @@
                     </div>
                     <div id="SHOW" class="col-md-6 col-sm-6 col-lg-4" *ngFor="let item of notifyData">
                         <div class="card card-profile">
-                            <div class="card-body">
+                            <div class="card-body" style="text-align: right;direction: rtl;padding: 10px">
                                 <h3 class="card-category text-gray">{{item.title}}</h3><hr>
                                 <p style="font-size:18px" class="card-description">{{item.content}}</p>
-                                <i class="material-icons">update</i>
-                                <h6 class="card-title">{{item.mDate.toString()}}</h6>
+                                <h6 class="card-title"><i class="material-icons">update</i> {{item.mDate}}</h6>
                                 <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(item.id)"><i class="material-icons">delete</i></button>
                             </div>
                         </div>
                     </div>                                
-              </div>
-              <p-toast position="bottom-center"></p-toast>
+                </div>
           </div>
       </div>
   </div>

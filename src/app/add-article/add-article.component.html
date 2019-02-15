@@ -10,26 +10,20 @@
                   <div class="card-body">
                       <form #f="ngForm" (ngSubmit)="saveFormData(f)">
                           <div class="row">
-                              <div class="col-md-10">
+                              <div class="col-md-12">
                                 <mat-form-field class="example-full-width">
                                     <input matInput placeholder="عنوان المقالة" name="article_title" [(ngModel)]="article_title" required>
                                   </mat-form-field>
                               </div>
-							  <div class="col-md-2">
-								<mat-form-field>
-								  <input matInput placeholder="اختر التاريخ" [matDatepicker]="picker" name="article_date" [(ngModel)]="article_date" required>
-								  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-								  <mat-datepicker #picker></mat-datepicker>
-								</mat-form-field>								
-                              </div>
                           </div>
-						  <div class="row">
+                           <div class="row">
                               <div class="col-md-12">
                                 <div class="example-full-width">
+                                    <p>صورة المقالة</p>
                                   <input type="file" (change)="onSelectedFile($event)" accept=".png,.jpg" required />	
-									<div class="progress">
-									<div class="progress-bar" style = "background-color:#e53935;" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
-								    </div>								  
+                                  <div class="progress">
+                                    <div class="progress-bar default-bg-color" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>								  
                                 </div>
                               </div>
                           </div>
@@ -41,7 +35,6 @@
                           </div>
                           <button mat-raised-button type="submit" [disabled]="!f.valid"  class="btn btn-danger pull-right"><i class="material-icons">check</i> اضافة</button>
                           <button mat-raised-button class="btn btn-danger pull-right" (click)="cancel()"><i class="material-icons">cancel</i> الغاء</button>
-                          <p-toast position="bottom-center"></p-toast>	
                           <div class="clearfix"></div>
                       </form>				  
                   </div>

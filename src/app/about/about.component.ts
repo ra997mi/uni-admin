@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { NewsService } from '../services/news.service';
 import { Router } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { NgxSpinnerService } from 'ngx-spinner';
 const STORAGE_KEY = 'local_user';
 
 @Component({
@@ -20,7 +20,7 @@ export class AboutComponent implements OnInit {
     departments;
   constructor(private firestoreService: NewsService,
     private router: Router,
-    private spinnerService: Ng4LoadingSpinnerService,
+    private spinnerService: NgxSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService) {}
 
   ngOnInit( ) {

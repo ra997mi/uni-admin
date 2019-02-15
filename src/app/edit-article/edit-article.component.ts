@@ -4,7 +4,7 @@ import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask 
 import { map } from 'rxjs/operators/map';
 import {finalize} from 'rxjs/operators';
 import { Component, OnInit, Inject } from '@angular/core';
-import {MessageService} from 'primeng/api';
+import { ToastrService } from 'ngx-toastr';
 import { Router,ActivatedRoute } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 const STORAGE_KEY = 'local_user';
@@ -18,7 +18,6 @@ export class EditArticleComponent implements OnInit{
 
   article_id: any;
   article_title: any;
-  article_date: any;
   article_details: any;
   article_image: any;
   img_name: any;
@@ -30,11 +29,11 @@ export class EditArticleComponent implements OnInit{
   downloadURL: Observable<string>;
 
   constructor(private router: ActivatedRoute,
-  private route: Router,
+    private route: Router,
     private storage: AngularFireStorage,
-     public newsService: NewsService,
-     @Inject(SESSION_STORAGE) private mstorage: StorageService,
-	 private messageService: MessageService) {}
+    public newsService: NewsService,
+    @Inject(SESSION_STORAGE) private mstorage: StorageService,
+    private toastr: ToastrService,) {}
   
     ngOnInit( ) {
       if (this.mstorage
@@ -52,13 +51,13 @@ export class EditArticleComponent implements OnInit{
 
     saveFormData(form) {
 	if(this.article_image){
-        this.newsService.updateNews(this.article_id, this.article_title, this.article_details, this.article_date, this.article_image, this.img_name).then(
+        this.newsService.updateNews(this.article_id, this.article_title, this.article_details, this.article_image, this.img_name).then(
           (res) => {
             this.route.navigate(['articles']);
         });
 	}
 	 else {
-		 this.messageService.add({severity:'warn', summary:'خطأ', detail:'يرجى انتظار تحميل الصورة',life: 5000});
+     this.toastr.error('خطأ','يرجى انتظار تحميل الصورة');
 	 }
  
     }
@@ -77,5 +76,9 @@ export class EditArticleComponent implements OnInit{
 			});
 		  })
 		).subscribe();
+  }
+  
+  cancel(){
+		this.route.navigate(['articles']);
 	}
 }

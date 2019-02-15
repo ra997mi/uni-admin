@@ -2,9 +2,10 @@ import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NewsService } from '../services/news.service';
 import { Router } from '@angular/router';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 const STORAGE_KEY = 'local_user';
+declare const google: any;
 
 @Component({
   selector: 'app-contactus',
@@ -12,6 +13,7 @@ const STORAGE_KEY = 'local_user';
   styleUrls: ['./contactus.component.scss']
 })
 export class ContactusComponent implements OnInit,AfterViewInit {
+  
 
     contactList: Observable<any[]>;
     email: string;
@@ -21,7 +23,7 @@ export class ContactusComponent implements OnInit,AfterViewInit {
 
   constructor(private firestoreService: NewsService,
     private router: Router,
-    private spinnerService: Ng4LoadingSpinnerService,
+    private spinnerService: NgxSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService) {}
 
   ngOnInit( ) {
@@ -33,7 +35,7 @@ export class ContactusComponent implements OnInit,AfterViewInit {
     }
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
     this.contactList.subscribe( data => {
       for(let i of data){
         this.email = i.email;
@@ -42,18 +44,26 @@ export class ContactusComponent implements OnInit,AfterViewInit {
         this.lng = i.lng;
       }
       this.spinnerService.hide();
+      this.loadMap();
     });
   }
 
   addContact() {
     this.router.navigate(['add-contact',{email:this.email, number:this.number, lat:this.lat, lng:this.lng}]);
   }
-  
-  getLat(lat) : number {
-	  return parseFloat(lat);
-  }
-  
-   getLng(lng) : number {
-	  return parseFloat(lng);
+
+  loadMap(){
+    var myLatlng = new google.maps.LatLng(parseFloat(this.lat), parseFloat(this.lng));
+    var mapOptions = {
+        zoom: 18,
+        center: myLatlng,
+        scrollwheel: false
+    };
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        title: "University"
+    });
+    marker.setMap(map);
   }
 }

@@ -1,8 +1,7 @@
 <div class="login-main">
-        <ng4-loading-spinner> </ng4-loading-spinner>
     <div class="container signin-content">
         <div class="card mcard">
-            <div class="card-header card-header-danger mcorn">
+            <div class="card-header card-header-danger">
                 <h4 class="card-title">تسجيل الدخول</h4>
                 <p class="card-category">قم بتسجيل الدخول للاستخدام لوحة التحكم</p>
             </div>
@@ -19,10 +18,9 @@
                         </span>
                     </label>
                     </div>				
-                    <button (click)="showspin()" type="submit" [disabled]="!f.valid" class="btn btn-danger mcorn">تسجيل الدخول</button>
+                    <button type="submit" [disabled]="!f.valid" class="btn btn-danger">تسجيل الدخول</button>
                 </form>		
-            </div>
-            <p-toast position="bottom-center"></p-toast>	
+            </div>	
         </div>
     </div>
 </div>

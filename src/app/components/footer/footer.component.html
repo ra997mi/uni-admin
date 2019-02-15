@@ -3,7 +3,7 @@
         <div class="copyright">
             &copy;
             {{test | date: 'yyyy'}},
-            <a>جامعة تكنولوجيا المعلومات والاتصالات</a>
+            <a *ngFor = "let i of settingsData">{{i.university_name}}</a>
         </div>
     </div>
 </footer>

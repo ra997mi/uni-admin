@@ -1,6 +1,5 @@
 <div class="main-content">
     <div class="container-fluid">
-            <ng4-loading-spinner> </ng4-loading-spinner>
         <div class="card">
             <div class="card-header card-header-danger">
                 <h3 class="card-title" style="text-align: center">لوحة الفيديوهات الرئيسية</h3>
@@ -11,15 +10,14 @@
                     <div id="no-items-ava">
                         <img src="assets/img/youtube.svg">
                         <p style="font-weight: bold; margin:10px">لا يوجد عناصر</p>
-                    </div>                    
-                    <div id="SHOW" *ngFor="let item of videosData" style="margin: 25px;">
-                        <youtube-player [videoId]="youtube_parser(item.link)"></youtube-player><hr>
+                    </div>                   
+                    <div id="SHOW" *ngFor="let item of videosData">
+                        <youtube-player style="padding:5px" [videoId]="youtube_parser(item.link)"></youtube-player><hr>
                         <h6 class="card-category text-gray">{{item.title}}</h6>							
                         <button class="btn btn-danger btn-round btn-sm" (click)="updateVideo(item)"><i class="material-icons">edit</i></button>
                         <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(item.id)"><i class="material-icons">delete</i></button>
                     </div>                    
                 </div>
-				<p-toast position="bottom-center"></p-toast>
             </div>
         </div>
     </div>

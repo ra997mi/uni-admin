@@ -2,12 +2,12 @@ import { Component, OnInit,Inject, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NewsService } from '../services/news.service';
 import { Router } from '@angular/router';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 const STORAGE_KEY = 'local_user';
-import {ConfirmDeleteComponent} from '../confirm-delete/confirm-delete.component'
-import {MatDialog} from "@angular/material";
-import {MessageService} from 'primeng/api';
+import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component'
+import { MatDialog } from "@angular/material";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-videos',
@@ -20,9 +20,9 @@ export class VideosComponent implements OnInit, AfterViewInit {
   videosData: any;
   constructor(private firestoreService: NewsService,
     private router: Router,
-    private spinnerService: Ng4LoadingSpinnerService,
+    private spinnerService: NgxSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService,
-    private messageService: MessageService,
+    private toastr: ToastrService,
     private dialog: MatDialog) {}
 
     openDialog(item): void {
@@ -41,7 +41,7 @@ export class VideosComponent implements OnInit, AfterViewInit {
 	   this.videosList = this.firestoreService.getVideos().valueChanges();
    }
  }
-   ngAfterViewInit(): void {
+   ngAfterViewInit() {
     this.videosList.subscribe( data => {
       if(data.length == 0){
         $('#no-items-ava').show();
@@ -61,7 +61,7 @@ export class VideosComponent implements OnInit, AfterViewInit {
   
   deleteVideo(item) {
     this.firestoreService.deleteVideos(item).then( () => {
-      this.messageService.add({severity:'success', summary:'تم الحذف', detail:'تم حذف الفيديو بنجاح',life: 3000});
+      this.toastr.success('تم الحذف','تم حذف الفيديو بنجاح');
     });
   }
 updateVideo(item) {

@@ -1,7 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
+import { NewsService } from 'app/services/news.service';
 const STORAGE_KEY = 'local_user';
 
 declare const $: any;
@@ -17,7 +19,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/videos', title: 'لوحة الفيديوهات',  icon: 'movie', class: '' },
     { path: '/about', title: 'لوحة المعلومات',  icon: 'info', class: '' },
     { path: '/contact', title: 'لوحة الاتصال',  icon: 'email', class: '' },
-    { path: '/all-notify', title: 'لوحة الاحداث',  icon: 'notifications', class: '' }
+    { path: '/all-notify', title: 'لوحة الاحداث',  icon: 'notifications', class: '' },
+    { path: '/settings', title: 'الاعدادات',  icon: 'settings', class: '' }
 ];
 
 @Component({
@@ -25,10 +28,14 @@ export const ROUTES: RouteInfo[] = [
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, AfterViewInit {
+
   menuItems: any[];
+  settingsList: Observable<any[]>;
+  settingsData: any;
 
   constructor(public afAuth: AngularFireAuth,
+  private firestoreService: NewsService,
   private router: Router,
   @Inject(SESSION_STORAGE) private storage: StorageService) {}
   
@@ -39,7 +46,12 @@ export class SidebarComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.settingsList = this.firestoreService.getSettings().valueChanges();
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+  }
+  ngAfterViewInit() {
+    this.settingsList.subscribe( data => {
+      this.settingsData = data;    });
   }
   isMobileMenu() {
       if ($(window).width() > 991) {

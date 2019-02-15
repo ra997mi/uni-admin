@@ -1,10 +1,9 @@
 <div class="main-content">
     <div class="container-fluid">
-            <ng4-loading-spinner> </ng4-loading-spinner>
         <div class="card">
             <div class="card-header card-header-danger">
                 <h3 class="card-title" style="text-align: center">لوحة الاخبار الرئيسية</h3>
-                <button mat-raised-button  class="btn btn-danger btn-round pull-right" (click)="addArticle()"><i class="material-icons">control_point</i> اضافة خبر جديد</button>
+                <button mat-raised-button  class="btn btn-danger btn-round pull-right" routerLink="/add-article"><i class="material-icons">control_point</i> اضافة خبر جديد</button>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -12,21 +11,23 @@
                         <img src="assets/img/news.svg">
                         <p style="font-weight: bold; margin:10px">لا يوجد عناصر</p>
                     </div>                    
-                    <div id="SHOW" class="col-md-6 col-sm-6 col-lg-4" *ngFor="let item of articlesData" style="margin-top: 25px;">
-                        <div class="card card-profile">
-                            <img class="card-img-top" src="{{item.image}}">
-                            <div class="card-body">
-                                <h6 class="card-category text-gray">{{item.title}}</h6><hr>
-                                <p class="card-description" [innerHTML]="toHTML(item.description)"></p>
-								<i class="material-icons">update</i>
-								<h6 class="card-title">{{item.date}}</h6>
+                    <div id="SHOW">
+                        <div class="row" >
+                            <div class="col-md-6 col-lg-4" *ngFor="let item of articlesData">
+                            <div class="card"><img class="card-img-top img-fluid" src="{{item.image}}" />
+                              <div class="card-block" style="text-align: right;direction: rtl;padding: 10px">
+                                <h4 class="card-title">{{item.title}}</h4><hr>
+                                <div class="card-text" [innerHTML]="toHTML(item.description)"></div>
+                                <h6 class="card-title"><i class="material-icons">update</i> {{item.date}}</h6>
+                                <button class="btn btn-danger btn-round btn-sm" (click)="viewDialog(item)"><i class="material-icons">visibility</i></button>
 								<button class="btn btn-danger btn-round btn-sm" (click)="updateArticle(item)"><i class="material-icons">edit</i></button>
                                 <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(item.id, item.imgname)"><i class="material-icons">delete</i></button>
+                              </div>
                             </div>
-                       </div>
+                          </div>                        
+                        </div>
                     </div>                    
-                </div>
-				<p-toast position="bottom-center"></p-toast>			
+                </div>		
             </div>			
         </div>
     </div>

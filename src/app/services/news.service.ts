@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage} from '@angular/fire/storage';
 import { newsdatatype } from '../services/newsdatatype';
-import {formatDate } from '@angular/common';
+import { formatDate } from '@angular/common';
 
 import * as firebase from 'firebase/app'
 
@@ -19,13 +19,13 @@ export class NewsService {
     return this.firestore.doc(`videosList/${id}`).set({
       id,
       title,
-	  link,
+	    link,
     });
   }
 
   addEvent(title: string, content: string): Promise<void> {
     let today= new Date();
-    let mDate = formatDate(today, 'EEEE, MMMM d', 'en-US');
+    let mDate = formatDate(today, 'medium', 'en-US');
     const id = this.firestore.createId();
     return this.firestore.doc(`eventList/${id}`).set({
       id,
@@ -35,7 +35,7 @@ export class NewsService {
     });
   }
 
-  getEvents(): AngularFirestoreCollection<newsdatatype> {
+  getEvents(): AngularFirestoreCollection<void> {
     return this.firestore.collection('eventList');
   }
 
@@ -46,13 +46,14 @@ export class NewsService {
     addAbout(vision: string, objectives: string, mission: string, departments: string): Promise<void> {
     const id = 'uni-about';
     return this.firestore.doc(`aboutList/${id}`).set({
-      vision,
+    id,
+    vision,
 	  objectives,
 	  mission,
 	  departments
     });
   }
-    getAbout(): AngularFirestoreCollection<newsdatatype> {
+    getAbout(): AngularFirestoreCollection<void> {
     return this.firestore.collection('aboutList');
   }
 
@@ -86,13 +87,14 @@ export class NewsService {
     addContact(email: string, number: string, lat: string, lng: string): Promise<void> {
     const id = 'uni-contact';
     return this.firestore.doc(`contactList/${id}`).set({
+    id,
     email,
 	  number,
 	  lat,
 	  lng
     });
   }
-    getContact(): AngularFirestoreCollection<newsdatatype> {
+    getContact(): AngularFirestoreCollection<void> {
     return this.firestore.collection('contactList');
   }
   
@@ -100,10 +102,10 @@ export class NewsService {
      return this.firestore.doc(`videosList/${id}`).set({
       id,
       title,
-	  link,
+	    link,
     });
   }
-  getVideos(): AngularFirestoreCollection<newsdatatype> {
+  getVideos(): AngularFirestoreCollection<void> {
     return this.firestore.collection('videosList');
   }
   
@@ -111,37 +113,59 @@ export class NewsService {
     return this.firestore.doc(`videosList/${videosid}`).delete();
   }
   
-  addNews(title, description, date, image, imgname): Promise<void> {
+  addNews(title, description, image, imgname): Promise<void> {
     const id = this.firestore.createId();
+    let today= new Date();
+    let date = formatDate(today, 'medium', 'en-US');
     return this.firestore.doc(`newsList/${id}`).set({
       id,
       title,
       description,
       date,
       image,
-	  imgname,
+	    imgname,
     });
   }
-  updateNews(id, title, description, date, image, imgname): Promise<void> {
+  updateNews(id, title, description, image, imgname): Promise<void> {
+    let today= new Date();
+    let date = formatDate(today, 'medium', 'en-US');
      return this.firestore.doc(`newsList/${id}`).set({
       id,
       title,
       description,
       date,
       image,
-	  imgname,
+	    imgname,
     });
   }
   getNews(): AngularFirestoreCollection<newsdatatype> {
     return this.firestore.collection('newsList');
   }
   
-  deleteNews(newsid: string,imgid: string): Promise<void> {
+  deleteNews(newsid: string, imgid: string): Promise<void> {
 	const storageRef = firebase.storage().ref();
     storageRef.child(`posts/${imgid}`).delete();
     return this.firestore.doc(`newsList/${newsid}`).delete();
   }
   async login(email , password) {
     return await this.afAuth.auth.signInWithEmailAndPassword(email , password);
+  }
+
+  saveSettings(university_name: string, collage_name: string, logo: string): Promise<void> {
+    const id = 'settingData';
+    return this.firestore.doc(`setting/${id}`).set({
+      id,
+      university_name,
+      collage_name,
+      logo
+    });
+  }
+  getSettings(): AngularFirestoreCollection<void>{
+    return this.firestore.collection('setting');
+  }
+
+  deleteOldLogo(){
+    const storageRef = firebase.storage().ref();
+    storageRef.child(`settings/unilogo.png`).delete();
   }
 }

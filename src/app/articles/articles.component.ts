@@ -2,12 +2,13 @@ import { Component, OnInit,Inject, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NewsService } from '../services/news.service';
 import { Router } from '@angular/router';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
+import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component'
+import { ArticleViewComponent } from '../article-view/article-view.component'
+import { MatDialog } from "@angular/material";
+import { ToastrService } from 'ngx-toastr';
 const STORAGE_KEY = 'local_user';
-import {ConfirmDeleteComponent} from '../confirm-delete/confirm-delete.component'
-import {MatDialog} from "@angular/material";
-import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-articles',
@@ -20,10 +21,16 @@ export class ArticlesComponent implements OnInit, AfterViewInit {
     articlesData: any;
   constructor(private firestoreService: NewsService,
     private router: Router,
-    private spinnerService: Ng4LoadingSpinnerService,
+    private spinnerService: NgxSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService,
-    private messageService: MessageService,
+    private toastr: ToastrService,
     private dialog: MatDialog) {}
+
+    viewDialog() {
+      this.dialog.open(ArticleViewComponent, {
+        data: {article: this.articlesData}
+      });
+    }
   
   openDialog(item,img): void {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent);
@@ -65,13 +72,9 @@ toHTML(input) : any {
 
 deleteArticle(item,img) {
     this.firestoreService.deleteNews(item,img).then( () => {
-      this.messageService.add({severity:'success', summary:'تم الحذف', detail:'تم حذف الخبر بنجاح',life: 3000});
-    });
+      this.toastr.success('تم الحذف','تم حذف الخبر بنجاح');    });
   }
 updateArticle(item) {
     this.router.navigate(['edit-article', item]);
-  }
-  addArticle() {
-    this.router.navigate(['add-article']);
   }
 }

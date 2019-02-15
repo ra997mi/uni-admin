@@ -43,4 +43,8 @@ export class EditVideoComponent implements OnInit {
       });
 
     }
+
+    cancel(){
+      this.route.navigate(['videos']);
+    }
 }

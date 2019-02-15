@@ -4,23 +4,21 @@ import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask 
 import { map } from 'rxjs/operators/map';
 import {finalize} from 'rxjs/operators';
 import { Component, OnInit, Inject } from '@angular/core';
-import { ToastrService } from 'ngx-toastr'
-import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Router} from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 const STORAGE_KEY = 'local_user';
 
-
 @Component({
-  selector: 'app-add-article',
-  templateUrl: './add-article.component.html',
-  styleUrls: ['./add-article.component.scss']
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss']
 })
-export class AddArticleComponent implements OnInit {
+export class SettingsComponent implements OnInit {
 
-  article_title: any;
-  article_details: any;
-  article_image: any;
-  img_name: any;
+  university_name: any;
+  collage_name: any;
+  logo: any;
   
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
@@ -36,27 +34,30 @@ export class AddArticleComponent implements OnInit {
 
 
   ngOnInit( ) {
-    if (this.mstorage
-      .get(STORAGE_KEY) == null) {
+    if (this.mstorage.get(STORAGE_KEY) == null) {
       this.router.navigate(['login']);
     }
 	}
   
  saveFormData(form) {
-	 if(this.article_image){
-		this.newsService.addNews(this.article_title, this.article_details, this.article_image, this.img_name).then(
+   console.log("getcalled");
+   console.log("this logo is " + this.logo);
+	 if(this.logo){
+     console.log('callled!');
+		this.newsService.saveSettings(this.university_name, this.collage_name, this.logo).then(
 	   (res) => {
-		this.router.navigate(['articles']);
-	});
-	 }
+      this.toastr.success('تم الحفظ','تم حفظ المعلومات بنجاح');
+      this.router.navigate(['dashboard']);
+    });
+  }
 	 else {
 		 this.toastr.error('خطأ','يرجى انتظار تحميل الصورة');
 	 }
   }
   
  onSelectedFile(event) {
-	 this.img_name = event.target.files[0].name;
-	  const id = '/posts/' + this.img_name;
+    this.newsService.deleteOldLogo();
+	  const id = '/settings/' + 'unilogo.png';
 	  this.ref = this.storage.ref(id);
 	  this.task = this.ref.put(event.target.files[0]);
 	  this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
@@ -64,13 +65,10 @@ export class AddArticleComponent implements OnInit {
 	  this.task.snapshotChanges().pipe(
 		  finalize(() => {
 			this.ref.getDownloadURL().subscribe(url => {
-			  this.article_image = url;
+        this.logo = url;
 			});
 		  })
 		).subscribe();
 	}
-	
-	cancel(){
-		this.router.navigate(['articles']);
-	}
+
 }
