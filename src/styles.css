@@ -19,15 +19,6 @@
     box-shadow: unset;
 }
 
-iframe {
-    width: auto !important;
-    margin: 0 auto !important;
-}
-
-youtube-player{
-    width: auto !important;
-    margin: 0 auto !important;
-}
 
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, span {
     font-family: 'Cairo', sans-serif;

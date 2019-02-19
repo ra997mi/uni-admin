@@ -1,14 +1,14 @@
 import { Component, OnInit,Inject, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NewsService } from '../services/news.service';
+import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
-const STORAGE_KEY = 'local_user';
 import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component'
 import { MatDialog } from "@angular/material";
 import { ToastrService } from 'ngx-toastr';
 import * as $ from 'jquery'
+const STORAGE_KEY = 'local_user';
 
 @Component({
   selector: 'app-all-notify',
@@ -20,7 +20,7 @@ export class AllNotifyComponent implements OnInit, AfterViewInit  {
   notifyList: Observable<any[]>;
   notifyData: any;
 
-  constructor(private firestoreService: NewsService,
+  constructor(private firestoreService: FirebaseService,
     private router: Router,private spinnerService: NgxSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService,
     private toastr: ToastrService,
@@ -39,7 +39,7 @@ export class AllNotifyComponent implements OnInit, AfterViewInit  {
     if (this.storage.get(STORAGE_KEY) == null) {
       this.router.navigate(['login']);
     } else {
-      this.notifyList = this.firestoreService.getEvents().valueChanges();
+      this.notifyList = this.firestoreService.getEvents();
     }
   }
 
@@ -55,19 +55,14 @@ export class AllNotifyComponent implements OnInit, AfterViewInit  {
         $('#SHOW').show();
         this.notifyData = data;
         var counter = this.notifyData.length;
-        this.firestoreService.updateCount(3,counter);
+        this.firestoreService.updateCount(3, counter);
       }
     });
   }
 
   deleteEvent(item) {
-    this.firestoreService.deleteEvent(item).then( () => {
-      this.toastr.success('تم الحذف','تم حذف الحدث بنجاح');
-    });
-  }
-
-  addEvent(){
-    this.router.navigate(['notify']);
+    this.firestoreService.deleteEvent(item);
+    this.toastr.success('تم الحذف','تم حذف الحدث بنجاح');
   }
 }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NewsService } from '../services/news.service';
+import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
@@ -19,16 +19,17 @@ export class ArticlesComponent implements OnInit, AfterViewInit {
 	
     newsList: Observable<any[]>;
     articlesData: any;
-  constructor(private firestoreService: NewsService,
+
+  constructor(private firestoreService: FirebaseService,
     private router: Router,
     private spinnerService: NgxSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService,
     private toastr: ToastrService,
     private dialog: MatDialog) {}
 
-    viewDialog() {
+    viewDialog(items) {
       this.dialog.open(ArticleViewComponent, {
-        data: {article: this.articlesData}
+        data: {article: items}
       });
     }
   
@@ -45,7 +46,7 @@ export class ArticlesComponent implements OnInit, AfterViewInit {
     if (this.storage.get(STORAGE_KEY) == null) {
       this.router.navigate(['login']);
     } else {
-      this.newsList = this.firestoreService.getNews().valueChanges();
+      this.newsList = this.firestoreService.getNews();
     }
   }
 
@@ -66,14 +67,14 @@ export class ArticlesComponent implements OnInit, AfterViewInit {
     });
   }
   
-toHTML(input) : any {
-		return new DOMParser().parseFromString(input, "text/html").documentElement.textContent.substring(0,300) + '...';
+  substringText(text) : any {
+		return new DOMParser().parseFromString(text, "text/html").documentElement.textContent.substring(0, 300) + '...';
 }
 
 deleteArticle(item,img) {
-    this.firestoreService.deleteNews(item,img).then( () => {
-      this.toastr.success('تم الحذف','تم حذف الخبر بنجاح');    });
-  }
+    this.firestoreService.deleteNews(item,img);
+    this.toastr.success('تم الحذف','تم حذف الخبر بنجاح');
+}
 updateArticle(item) {
     this.router.navigate(['edit-article', item]);
   }

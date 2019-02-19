@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, AfterViewInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
-import { NewsService } from '../services/news.service';
+import { FirebaseService } from '../services/firebase.service';
 const STORAGE_KEY = 'local_user';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -13,27 +13,27 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class DashboardComponent implements OnInit, AfterViewInit{
 	
   Counter;
-  CountData;
+  Count
 
   constructor(private router: Router,
-    private firestoreService : NewsService,
+    private firestoreService : FirebaseService,
     private spinnerService: NgxSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService) {
       this.spinnerService.show();
     }
 
- ngOnInit() {
-   if (this.storage.get(STORAGE_KEY) == null) {
-     this.router.navigate(['login']);
-   }
-   else {
-     this.Counter = this.firestoreService.getCount().valueChanges();
-   }
- }
- ngAfterViewInit() {
-  this.Counter.subscribe( data => {
-    this.CountData = data;
+  ngOnInit() {
+    if (this.storage.get(STORAGE_KEY) == null) {
+      this.router.navigate(['login']);
+    }
+    else {
+      this.Counter = this.firestoreService.getCount();
+    }
+  }
+  ngAfterViewInit() {
     this.spinnerService.hide();
-  });
-}
+    this.Counter.subscribe( data => {
+      this.Count = data;
+    });
+  }
 }

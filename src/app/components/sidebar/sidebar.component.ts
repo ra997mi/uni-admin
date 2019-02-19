@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
-import { NewsService } from 'app/services/news.service';
+import { FirebaseService } from 'app/services/firebase.service';
 const STORAGE_KEY = 'local_user';
 
 declare const $: any;
@@ -32,10 +32,10 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   menuItems: any[];
   settingsList: Observable<any[]>;
-  settingsData: any;
+  logo: any;
 
   constructor(public afAuth: AngularFireAuth,
-  private firestoreService: NewsService,
+  private firestoreService: FirebaseService,
   private router: Router,
   @Inject(SESSION_STORAGE) private storage: StorageService) {}
   
@@ -46,12 +46,21 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     }
 
   ngOnInit() {
-    this.settingsList = this.firestoreService.getSettings().valueChanges();
+    this.settingsList = this.firestoreService.getSettings();
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
   ngAfterViewInit() {
     this.settingsList.subscribe( data => {
-      this.settingsData = data;    });
+      if(data[0] == undefined){
+        this.logo = "assets/img/uni-logo.png"
+      }
+      else {
+        this.logo = data[0].logo;
+        if(this.logo == null || this.logo == undefined){
+          this.logo = "assets/img/uni-logo.png";
+        }
+      }
+    });
   }
   isMobileMenu() {
       if ($(window).width() > 991) {

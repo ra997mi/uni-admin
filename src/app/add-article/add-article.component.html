@@ -12,7 +12,7 @@
                           <div class="row">
                               <div class="col-md-12">
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="عنوان المقالة" name="article_title" [(ngModel)]="article_title" required>
+                                    <input matInput placeholder="عنوان المقالة" name="title" [(ngModel)]="title" required>
                                   </mat-form-field>
                               </div>
                           </div>
@@ -30,11 +30,11 @@
                           <div class="row">
                               <div class="col-md-12">
                                 <label>تفاصيل المقالة</label>
-                                <editor name="article_details" [(ngModel)]="article_details"></editor>
+                                <editor name="details" [(ngModel)]="details"></editor>
                               </div>
                           </div>
                           <button mat-raised-button type="submit" [disabled]="!f.valid"  class="btn btn-danger pull-right"><i class="material-icons">check</i> اضافة</button>
-                          <button mat-raised-button class="btn btn-danger pull-right" (click)="cancel()"><i class="material-icons">cancel</i> الغاء</button>
+                          <button mat-raised-button class="btn btn-danger pull-right" routerLink="/articles"><i class="material-icons">cancel</i> الغاء</button>
                           <div class="clearfix"></div>
                       </form>				  
                   </div>

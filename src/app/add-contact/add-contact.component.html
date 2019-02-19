@@ -12,29 +12,29 @@
                           <div class="row">
                               <div class="col-md-6">
                                 <mat-form-field class="example-full-width">
-									<input matInput placeholder="البريد الالكتروني" name="contact_email" [(ngModel)]="contact_email" required>
+									<input matInput placeholder="البريد الالكتروني" name="email" [(ngModel)]="email" required>
                                   </mat-form-field>
                               </div>
                               <div class="col-md-6">
                                 <mat-form-field class="example-full-width">
-									<input matInput placeholder="رقم الهاتف" name="contact_number" [(ngModel)]="contact_number" required>
+									<input matInput placeholder="رقم الهاتف" name="number" [(ngModel)]="number" required>
                                   </mat-form-field>
                               </div>							  
                           </div>
                           <div class="row">
                               <div class="col-md-6">
                                 <mat-form-field class="example-full-width">
-									<input matInput placeholder="خط الطول للخريطة" name="contact_map_lat" [(ngModel)]="contact_map_lat" required>
+									<input matInput placeholder="خط الطول للخريطة" name="map_lat" [(ngModel)]="map_lat" required>
                                   </mat-form-field>
                               </div>
                               <div class="col-md-6">
                                 <mat-form-field class="example-full-width">
-									<input matInput placeholder="خط العرض للخريطة" name="contact_map_lng" [(ngModel)]="contact_map_lng" required>
+									<input matInput placeholder="خط العرض للخريطة" name="map_lng" [(ngModel)]="map_lng" required>
                                   </mat-form-field>
                               </div>							  
                           </div>					  
                           <button mat-raised-button type="submit" [disabled]="!f.valid"  class="btn btn-danger pull-right"><i class="material-icons">check</i> تحديث</button>
-						  <button mat-raised-button class="btn btn-danger pull-right" (click)="cancel()"><i class="material-icons">cancel</i> الغاء</button>						  
+						  <button mat-raised-button class="btn btn-danger pull-right" routerLink="/contact"><i class="material-icons">cancel</i> الغاء</button>						  
                           <div class="clearfix"></div>
                       </form>				  
                   </div>

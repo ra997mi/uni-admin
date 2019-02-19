@@ -13,8 +13,7 @@ import { AngularFireModule } from '@angular/fire/';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { NewsService } from './services/news.service';
+import { FirebaseService } from './services/firebase.service';
 import { AuthGuard } from './core/auth.guard';
 import { APP_BASE_HREF } from '@angular/common';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
@@ -33,7 +32,6 @@ import { ToastrModule } from 'ngx-toastr';
     RouterModule,
     AppRoutingModule,
     StorageServiceModule,
-    AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
@@ -52,7 +50,7 @@ import { ToastrModule } from 'ngx-toastr';
     AdminLayoutComponent,
     LoginComponent
   ],
-  providers: [DatePipe, NewsService, AuthGuard, {provide: APP_BASE_HREF, useValue : ''}],
+  providers: [DatePipe, FirebaseService, AuthGuard, {provide: APP_BASE_HREF, useValue : ''}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

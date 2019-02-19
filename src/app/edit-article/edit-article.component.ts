@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { NewsService } from '../services/news.service';
+import { FirebaseService } from '../services/firebase.service';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { map } from 'rxjs/operators/map';
 import {finalize} from 'rxjs/operators';
@@ -16,10 +16,10 @@ const STORAGE_KEY = 'local_user';
 })
 export class EditArticleComponent implements OnInit{
 
-  article_id: any;
-  article_title: any;
-  article_details: any;
-  article_image: any;
+  id: any;
+  title: any;
+  details: any;
+  image: any;
   img_name: any;
   
   ref: AngularFireStorageReference;
@@ -31,7 +31,7 @@ export class EditArticleComponent implements OnInit{
   constructor(private router: ActivatedRoute,
     private route: Router,
     private storage: AngularFireStorage,
-    public newsService: NewsService,
+    public FirebaseService: FirebaseService,
     @Inject(SESSION_STORAGE) private mstorage: StorageService,
     private toastr: ToastrService,) {}
   
@@ -42,25 +42,22 @@ export class EditArticleComponent implements OnInit{
       }
       else{
         this.router.params.subscribe( data => {
-          this.article_id = data.id;
-          this.article_title = data.title;
-          this.article_details = data.description;
+          this.id = data.id;
+          this.title = data.title;
+          this.details = data.description;
         });
       }
     }
 
-    saveFormData(form) {
-	if(this.article_image){
-        this.newsService.updateNews(this.article_id, this.article_title, this.article_details, this.article_image, this.img_name).then(
-          (res) => {
-            this.route.navigate(['articles']);
-        });
-	}
-	 else {
-     this.toastr.error('خطأ','يرجى انتظار تحميل الصورة');
-	 }
- 
+  saveFormData(form) {
+    if(this.image){
+      this.FirebaseService.updateNews(this.id, this.title, this.details, this.image, this.img_name);
+      this.route.navigate(['articles']);
     }
+    else {
+     this.toastr.error('خطأ','يرجى انتظار تحميل الصورة');
+	  }
+  }
     
  onSelectedFile(event) {
 	 this.img_name = event.target.files[0].name;
@@ -72,13 +69,10 @@ export class EditArticleComponent implements OnInit{
 	  this.task.snapshotChanges().pipe(
 		  finalize(() => {
 			this.ref.getDownloadURL().subscribe(url => {
-			  this.article_image = url;
+			  this.image = url;
 			});
 		  })
 		).subscribe();
   }
-  
-  cancel(){
-		this.route.navigate(['articles']);
-	}
+
 }

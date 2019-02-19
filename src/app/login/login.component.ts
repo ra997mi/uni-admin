@@ -1,6 +1,6 @@
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, Inject, OnInit } from '@angular/core';
-import { NewsService } from '../services/news.service';
+import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
@@ -21,7 +21,7 @@ password() {
 }
 
 constructor(private afAuth: AngularFireAuth,
-  private newsService: NewsService, private router: Router,
+  private FirebaseService: FirebaseService, private router: Router,
   @Inject(SESSION_STORAGE) private storage: StorageService,
   private toastr: ToastrService,
   private spinnerService: NgxSpinnerService) {}
@@ -37,7 +37,7 @@ constructor(private afAuth: AngularFireAuth,
     
 signIn(f) {
   this.spinnerService.show();
-  this.newsService.login(f.value.email, f.value.password).then((user) => {
+  this.FirebaseService.login(f.value.email, f.value.password).then((user) => {
   this.storage.set(STORAGE_KEY, this.afAuth.auth.currentUser);
   this.router.navigate(['dashboard']);
 }, (err) => {

@@ -12,19 +12,18 @@
                         <p style="font-weight: bold; margin:10px">لا يوجد عناصر</p>
                     </div>                    
                     <div id="SHOW">
-                        <div class="row" >
-                            <div class="col-md-6 col-lg-4" *ngFor="let item of articlesData">
-                            <div class="card"><img class="card-img-top img-fluid" src="{{item.image}}" />
-                              <div class="card-block" style="text-align: right;direction: rtl;padding: 10px">
-                                <h4 class="card-title">{{item.title}}</h4><hr>
-                                <div class="card-text" [innerHTML]="toHTML(item.description)"></div>
-                                <h6 class="card-title"><i class="material-icons">update</i> {{item.date}}</h6>
-                                <button class="btn btn-danger btn-round btn-sm" (click)="viewDialog(item)"><i class="material-icons">visibility</i></button>
-								<button class="btn btn-danger btn-round btn-sm" (click)="updateArticle(item)"><i class="material-icons">edit</i></button>
-                                <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(item.id, item.imgname)"><i class="material-icons">delete</i></button>
-                              </div>
+                        <div class="card-group">
+                            <div class="card" *ngFor = "let item of articlesData" style="margin:5px">
+                                <img class="card-img-top" src="{{item.image}}">
+                                    <div class="card-body">
+                                    <h5 class="card-title">{{item.title}}</h5>
+                                    <p style = "max-width: 250px" class="card-text" [innerHTML]="substringText(item.description)"></p>
+                                    <p class="card-text"><small class="text-muted">{{item.date}}</small></p>
+                                    <button class="btn btn-danger btn-round btn-sm" (click)="viewDialog(item)"><i class="material-icons">visibility</i></button>
+                                    <button class="btn btn-danger btn-round btn-sm" (click)="updateArticle(item)"><i class="material-icons">edit</i></button>
+                                    <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(item.id, item.imgname)"><i class="material-icons">delete</i></button>
+                                </div>
                             </div>
-                          </div>                        
                         </div>
                     </div>                    
                 </div>		

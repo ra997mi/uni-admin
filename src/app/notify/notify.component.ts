@@ -1,4 +1,4 @@
-import { NewsService } from '../services/news.service';
+import { FirebaseService } from '../services/firebase.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
@@ -15,8 +15,8 @@ export class NotifyComponent implements OnInit {
   event_content: any;
 
   constructor(private router: Router,
-     public newsService: NewsService,
-     @Inject(SESSION_STORAGE) private mstorage: StorageService) {}
+    public FirebaseService: FirebaseService,
+    @Inject(SESSION_STORAGE) private mstorage: StorageService) {}
 
   ngOnInit() {
     if (this.mstorage
@@ -26,13 +26,7 @@ export class NotifyComponent implements OnInit {
   }
   
   saveFormData(form) {
-	this.newsService.addEvent(this.event_title, this.event_content).then(
-		(res) => {
-      this.router.navigate(['all-notify']);
-			});
+    this.FirebaseService.addEvent(this.event_title, this.event_content);
+    this.router.navigate(['all-notify']);
   }
-  cancel(){
-	  this.router.navigate(['all-notify']);
-  }
-
 }

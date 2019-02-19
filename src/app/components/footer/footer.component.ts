@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NewsService } from 'app/services/news.service';
+import { FirebaseService } from 'app/services/firebase.service';
 
 @Component({
   selector: 'app-footer',
@@ -12,16 +12,24 @@ export class FooterComponent implements OnInit, AfterViewInit{
 
   test : Date = new Date();
   settingsList: Observable<any[]>;
-  settingsData: any;
+  university: any;
 
-  constructor(private firestoreService: NewsService) {}
+  constructor(private firestoreService: FirebaseService) {}
 
   ngOnInit() {
-    this.settingsList = this.firestoreService.getSettings().valueChanges();
+    this.settingsList = this.firestoreService.getSettings();
   }
   ngAfterViewInit() {
     this.settingsList.subscribe( data => {
-      this.settingsData = data;
+      if(data[0] == undefined){
+        this.university = "منصة جامعتي"
+      }
+      else{
+        this.university = data[0].university;
+        if(this.university == null || this.university == undefined){
+          this.university = "منصة جامعتي"
+        }
+      }
     });
   }
 

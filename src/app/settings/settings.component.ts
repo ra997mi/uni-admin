@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { NewsService } from '../services/news.service';
+import { FirebaseService } from '../services/firebase.service';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { map } from 'rxjs/operators/map';
 import {finalize} from 'rxjs/operators';
@@ -16,8 +16,8 @@ const STORAGE_KEY = 'local_user';
 })
 export class SettingsComponent implements OnInit {
 
-  university_name: any;
-  collage_name: any;
+  university: any;
+  collage: any;
   logo: any;
   
   ref: AngularFireStorageReference;
@@ -28,9 +28,9 @@ export class SettingsComponent implements OnInit {
 
   constructor(private router: Router,
     private storage: AngularFireStorage,
-     public newsService: NewsService,
-		 @Inject(SESSION_STORAGE) private mstorage: StorageService,
-		 private toastr: ToastrService) {}
+    public FirebaseService: FirebaseService,
+		@Inject(SESSION_STORAGE) private mstorage: StorageService,
+		private toastr: ToastrService) {}
 
 
   ngOnInit( ) {
@@ -40,23 +40,18 @@ export class SettingsComponent implements OnInit {
 	}
   
  saveFormData(form) {
-   console.log("getcalled");
-   console.log("this logo is " + this.logo);
 	 if(this.logo){
-     console.log('callled!');
-		this.newsService.saveSettings(this.university_name, this.collage_name, this.logo).then(
-	   (res) => {
+		this.FirebaseService.saveSettings(this.university, this.collage, this.logo);
       this.toastr.success('تم الحفظ','تم حفظ المعلومات بنجاح');
       this.router.navigate(['dashboard']);
-    });
-  }
+    }
 	 else {
 		 this.toastr.error('خطأ','يرجى انتظار تحميل الصورة');
 	 }
   }
   
  onSelectedFile(event) {
-    this.newsService.deleteOldLogo();
+    this.FirebaseService.deleteOldLogo();
 	  const id = '/settings/' + 'unilogo.png';
 	  this.ref = this.storage.ref(id);
 	  this.task = this.ref.put(event.target.files[0]);
@@ -64,9 +59,9 @@ export class SettingsComponent implements OnInit {
 	  this.uploadProgress = this.task.percentageChanges();
 	  this.task.snapshotChanges().pipe(
 		  finalize(() => {
-			this.ref.getDownloadURL().subscribe(url => {
-        this.logo = url;
-			});
+        this.ref.getDownloadURL().subscribe(url => {
+          this.logo = url;
+        });
 		  })
 		).subscribe();
 	}

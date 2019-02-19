@@ -1,4 +1,4 @@
-import { NewsService } from '../services/news.service';
+import { FirebaseService } from '../services/firebase.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
@@ -11,14 +11,14 @@ const STORAGE_KEY = 'local_user';
 })
 export class AddContactComponent implements OnInit {
 	
-  contact_email: any;
-  contact_number: any;
-  contact_map_lat: any;
-  contact_map_lng: any;
+  email: any;
+  number: any;
+  map_lat: any;
+  map_lng: any;
 
   constructor(private router: Router,private route: ActivatedRoute,
-     public newsService: NewsService,
-     @Inject(SESSION_STORAGE) private mstorage: StorageService) {}
+    public FirebaseService: FirebaseService,
+    @Inject(SESSION_STORAGE) private mstorage: StorageService) {}
 
 
   ngOnInit( ) {
@@ -26,25 +26,18 @@ export class AddContactComponent implements OnInit {
       .get(STORAGE_KEY) == null) {
       this.router.navigate(['login']);
     }
-	else{
-        this.route.params.subscribe( data => {
-            this.contact_email = data.email;
-            this.contact_number = data.number;
-            this.contact_map_lat = data.lat;
-            this.contact_map_lng = data.lng;
-        });
-      }
+	  else{
+      this.route.params.subscribe( data => {
+      this.email = data.email;
+      this.number = data.number;
+      this.map_lat = data.lat;
+      this.map_lng = data.lng;
+      });
+    }
   }
   
  saveFormData(form) {
-	this.newsService.addContact(this.contact_email, this.contact_number, this.contact_map_lat, this.contact_map_lng).then(
-	   (res) => {
+	this.FirebaseService.addContact(this.email, this.number, this.map_lat, this.map_lng);
 		this.router.navigate(['contact']);
-	});
   }
-  
-    cancel(){
-	  this.router.navigate(['contact']);
-  }
-
 }

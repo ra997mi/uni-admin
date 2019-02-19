@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject} from '@angular/core';
-import { Observable } from 'rxjs';
-import { NewsService } from '../services/news.service';
+import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { StorageService, SESSION_STORAGE } from 'angular-webstorage-service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -13,27 +12,27 @@ const STORAGE_KEY = 'local_user';
 })
 export class AboutComponent implements OnInit {
 
-    aboutList: Observable<any[]>;
+    aboutData;
     vision;
     objectives;
     mission;
     departments;
-  constructor(private firestoreService: NewsService,
+  constructor(private firestoreService: FirebaseService,
     private router: Router,
     private spinnerService: NgxSpinnerService,
     @Inject(SESSION_STORAGE) private storage: StorageService) {}
 
-  ngOnInit( ) {
+  ngOnInit() {
     this.spinnerService.show();
     if (this.storage.get(STORAGE_KEY) == null) {
       this.router.navigate(['login']);
     } else {
-      this.aboutList = this.firestoreService.getAbout().valueChanges();
+      this.aboutData = this.firestoreService.getAbout();
     }
   }
 
-  ngAfterViewInit(): void {
-    this.aboutList.subscribe( data => {
+  ngAfterViewInit() {
+    this.aboutData.subscribe( data => {
       for(let i of data){
         this.vision = i.vision;
         this.objectives = i.objectives;
