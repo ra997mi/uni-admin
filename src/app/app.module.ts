@@ -8,11 +8,11 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { StorageServiceModule } from 'angular-webstorage-service';
-import { EditorModule } from '@tinymce/tinymce-angular';
 import { AngularFireModule } from '@angular/fire/';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { FirestoreSettingsToken } from '@angular/fire/firestore';
 import { FirebaseService } from './services/firebase.service';
 import { AuthGuard } from './core/auth.guard';
 import { APP_BASE_HREF } from '@angular/common';
@@ -26,7 +26,6 @@ import { ToastrModule } from 'ngx-toastr';
   imports: [
     BrowserAnimationsModule,
     FormsModule,
-    EditorModule,
     ReactiveFormsModule,
     ComponentsModule,
     RouterModule,
@@ -50,7 +49,7 @@ import { ToastrModule } from 'ngx-toastr';
     AdminLayoutComponent,
     LoginComponent
   ],
-  providers: [DatePipe, FirebaseService, AuthGuard, {provide: APP_BASE_HREF, useValue : ''}],
+  providers: [DatePipe, FirebaseService, AuthGuard, {provide: APP_BASE_HREF, useValue : ''}, {provide: FirestoreSettingsToken, useValue: {}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

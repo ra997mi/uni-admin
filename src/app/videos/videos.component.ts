@@ -18,6 +18,7 @@ export class VideosComponent implements OnInit, AfterViewInit {
 
   videosList: Observable<any[]>;
   videosData: any;
+
   constructor(private firestoreService: FirebaseService,
     private router: Router,
     private spinnerService: NgxSpinnerService,
@@ -33,15 +34,16 @@ export class VideosComponent implements OnInit, AfterViewInit {
       });
     }
 
- ngOnInit() {
-  this.spinnerService.show();
-   if (this.storage.get(STORAGE_KEY) == null) {
-     this.router.navigate(['login']);
-   } else {
-	   this.videosList = this.firestoreService.getVideos();
-   }
- }
-   ngAfterViewInit() {
+  ngOnInit() {
+    this.spinnerService.show();
+    if (this.storage.get(STORAGE_KEY) == null) {
+      this.router.navigate(['login']);
+    } else {
+      this.videosList = this.firestoreService.getVideos();
+    }
+  }
+
+  ngAfterViewInit() {
     this.videosList.subscribe( data => {
       if(data.length == 0){
         $('#no-items-ava').show();
@@ -51,11 +53,10 @@ export class VideosComponent implements OnInit, AfterViewInit {
         $('#no-items-ava').hide();
         $('#SHOW').show();
       }
-      this.videosData = data;
-      var counter = this.videosData.length;
-      this.firestoreService.updateCount(2,counter);
-      this.spinnerService.hide();
-
+        this.videosData = data;
+        var counter = this.videosData.length;
+        this.firestoreService.updateCount(2,counter);
+        this.spinnerService.hide();
     });
   }
   

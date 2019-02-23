@@ -36,11 +36,17 @@ export class ContactusComponent implements OnInit,AfterViewInit {
 
   ngAfterViewInit() {
     this.contactList.subscribe( data => {
-      for(let i of data){
-        this.email = i.email;
-        this.number = i.number;
-        this.lat = i.lat;
-        this.lng = i.lng;
+      if(data[0] == undefined){
+        this.email = '!لا توجد بيانات مضافة';
+        this.number = '!لا توجد بيانات مضافة';
+        this.lat = '';
+        this.lng = '';
+      }
+      else{
+        this.email =  data[0].email;
+        this.number =  data[0].number;
+        this.lat =  data[0].lat;
+        this.lng =  data[0].lng;
       }
       this.spinnerService.hide();
       this.loadMap();

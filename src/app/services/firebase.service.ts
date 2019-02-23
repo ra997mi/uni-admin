@@ -123,7 +123,9 @@ export class FirebaseService {
     });
   }
 
-  updateNews(id, title, description, image, imgname) {
+  updateNews(id, title, description, image, imgname, oldname) {
+    const storageRef = firebase.storage().ref();
+    storageRef.child(`posts/${oldname}`).delete();
     let today= new Date();
     let date = formatDate(today, 'medium', 'en-US');
     this.firestore.doc(`newsList/${id}`).set({
@@ -141,7 +143,7 @@ export class FirebaseService {
   }
   
   deleteNews(newsid, imgid) {
-	const storageRef = firebase.storage().ref();
+	  const storageRef = firebase.storage().ref();
     storageRef.child(`posts/${imgid}`).delete();
     this.firestore.doc(`newsList/${newsid}`).delete();
   }

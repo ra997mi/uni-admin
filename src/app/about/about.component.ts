@@ -17,6 +17,7 @@ export class AboutComponent implements OnInit {
     objectives;
     mission;
     departments;
+
   constructor(private firestoreService: FirebaseService,
     private router: Router,
     private spinnerService: NgxSpinnerService,
@@ -33,11 +34,17 @@ export class AboutComponent implements OnInit {
 
   ngAfterViewInit() {
     this.aboutData.subscribe( data => {
-      for(let i of data){
-        this.vision = i.vision;
-        this.objectives = i.objectives;
-        this.mission = i.mission;
-        this.departments = i.departments;
+      if(data[0] == undefined){
+        this.vision = '!لا توجد بيانات مضافة';
+        this.objectives = '!لا توجد بيانات مضافة';
+        this.mission = '!لا توجد بيانات مضافة';
+        this.departments = '!لا توجد بيانات مضافة';
+      }
+      else{
+        this.vision =  data[0].vision;
+        this.objectives =  data[0].objectives;
+        this.mission =  data[0].mission;
+        this.departments =  data[0].departments;
       }
       this.spinnerService.hide();
     });

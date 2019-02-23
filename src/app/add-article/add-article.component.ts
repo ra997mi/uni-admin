@@ -53,7 +53,8 @@ export class AddArticleComponent implements OnInit {
   }
   
  onSelectedFile(event) {
-	 this.img_name = event.target.files[0].name;
+		const randomId = Math.random().toString(36).substring(2);
+	 	this.img_name = 'uni-' + randomId + event.target.files[0].name;
 	  const id = '/posts/' + this.img_name;
 	  this.ref = this.storage.ref(id);
 	  this.task = this.ref.put(event.target.files[0]);
@@ -61,9 +62,9 @@ export class AddArticleComponent implements OnInit {
 	  this.uploadProgress = this.task.percentageChanges();
 	  this.task.snapshotChanges().pipe(
 		  finalize(() => {
-			this.ref.getDownloadURL().subscribe(url => {
-			  this.image = url;
-			});
+				this.ref.getDownloadURL().subscribe(url => {
+					this.image = url;
+				});
 		  })
 		).subscribe();
 	}

@@ -45,7 +45,6 @@ export class AllNotifyComponent implements OnInit, AfterViewInit  {
 
   ngAfterViewInit() {
     this.notifyList.subscribe( data => {
-      this.spinnerService.hide();
       if(data.length == 0){
         $('#no-items-ava').show();
         $('#SHOW').hide();
@@ -53,10 +52,11 @@ export class AllNotifyComponent implements OnInit, AfterViewInit  {
       else{
         $('#no-items-ava').hide();
         $('#SHOW').show();
+      }
         this.notifyData = data;
         var counter = this.notifyData.length;
         this.firestoreService.updateCount(3, counter);
-      }
+        this.spinnerService.hide();
     });
   }
 

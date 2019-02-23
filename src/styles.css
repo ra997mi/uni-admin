@@ -89,6 +89,7 @@ input:-moz-placeholder { text-align:right; }
 .sidebar[data-color="danger"] li.active > a{
     background-color:var(--main-bg-color);
     box-shadow: unset;
+    cursor: pointer;
 }
 
 #toast-container > div {

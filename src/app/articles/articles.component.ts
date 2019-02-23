@@ -37,7 +37,7 @@ export class ArticlesComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent);
     dialogRef.afterClosed().subscribe(result => {
       if(result == 'true')
-      this.deleteArticle(item,img);
+      this.deleteArticle(item, img);
     });
   }
 
@@ -69,13 +69,13 @@ export class ArticlesComponent implements OnInit, AfterViewInit {
   
   substringText(text) : any {
 		return new DOMParser().parseFromString(text, "text/html").documentElement.textContent.substring(0, 300) + '...';
-}
+  }
 
-deleteArticle(item,img) {
+  deleteArticle(item,img) {
     this.firestoreService.deleteNews(item,img);
     this.toastr.success('تم الحذف','تم حذف الخبر بنجاح');
-}
-updateArticle(item) {
+  }
+  updateArticle(item) {
     this.router.navigate(['edit-article', item]);
   }
 }

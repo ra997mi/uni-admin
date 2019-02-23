@@ -10,7 +10,6 @@ import { EditArticleComponent } from '../../edit-article/edit-article.component'
 import { VideosComponent } from '../../videos/videos.component';
 import { AddVideoComponent } from '../../add-video/add-video.component';
 import { EditVideoComponent } from '../../edit-video/edit-video.component';
-import { EditorModule } from '@tinymce/tinymce-angular';
 import { YoutubePlayerModule } from 'ngx-youtube-player';
 import { AboutComponent } from '../../about/about.component';
 import { ContactusComponent } from '../../contactus/contactus.component';
@@ -23,6 +22,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ConfirmDeleteComponent } from '../../confirm-delete/confirm-delete.component';
 import { SettingsComponent } from '../../settings/settings.component';
 import { ArticleViewComponent } from '../../article-view/article-view.component';
+import { NgxTrumbowygModule } from 'ngx-trumbowyg';
 
 import {
   MatButtonModule,
@@ -50,9 +50,27 @@ import {
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
-    EditorModule,
     YoutubePlayerModule,
     NgxSpinnerModule,
+    NgxTrumbowygModule.withConfig({
+      lang: 'ar',
+      svgPath: '/assets/icons.svg',
+      removeformatPasted: true,
+      autogrow: true,
+      btns: [
+        ['formatting'],
+        ['strong', 'em', 'del'],
+        ['superscript', 'subscript'],
+        ['link'],
+        ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+        ['unorderedList', 'orderedList'],
+        ['horizontalRule'],
+        ['removeformat'],
+        ['fullscreen'],
+        ['insertImage']
+      ],
+      events: {}
+    }),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDlBIqwojwhPE-xqN-M8qTQXiyKvgqyhaw'
     })

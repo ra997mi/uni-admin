@@ -43,7 +43,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     this.afAuth.auth.signOut();
     this.storage.set(STORAGE_KEY, null);
     this.router.navigate(['login']);
-    }
+  }
 
   ngOnInit() {
     this.settingsList = this.firestoreService.getSettings();

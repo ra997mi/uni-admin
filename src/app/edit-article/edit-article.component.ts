@@ -21,6 +21,7 @@ export class EditArticleComponent implements OnInit{
   details: any;
   image: any;
   img_name: any;
+  old_img:any;
   
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
@@ -45,13 +46,14 @@ export class EditArticleComponent implements OnInit{
           this.id = data.id;
           this.title = data.title;
           this.details = data.description;
+          this.old_img = data.imgname;
         });
       }
     }
 
   saveFormData(form) {
     if(this.image){
-      this.FirebaseService.updateNews(this.id, this.title, this.details, this.image, this.img_name);
+      this.FirebaseService.updateNews(this.id, this.title, this.details, this.image, this.img_name, this.old_img);
       this.route.navigate(['articles']);
     }
     else {
@@ -60,8 +62,9 @@ export class EditArticleComponent implements OnInit{
   }
     
  onSelectedFile(event) {
-	 this.img_name = event.target.files[0].name;
-	  const id = '/posts/' + this.img_name;
+    const randomId = Math.random().toString(36).substring(2);
+    this.img_name = 'uni-' + randomId + event.target.files[0].name;
+    const id = '/posts/' + this.img_name;
 	  this.ref = this.storage.ref(id);
 	  this.task = this.ref.put(event.target.files[0]);
 	  this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
