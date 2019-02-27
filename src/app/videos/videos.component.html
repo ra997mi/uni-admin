@@ -14,8 +14,8 @@
                     <div id="SHOW" *ngFor="let item of videosData">
                         <youtube-player style="padding:5px" [videoId]="youtube_parser(item.link)"></youtube-player><hr>
                         <h6 class="card-category text-gray">{{item.title}}</h6>							
-                        <button class="btn btn-danger btn-round btn-sm" (click)="updateVideo(item)"><i class="material-icons">edit</i></button>
-                        <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(item.id)"><i class="material-icons">delete</i></button>
+                        <button class="btn btn-danger btn-round btn-sm" (click)="updateVideo(item)"><i style="margin: 0 auto" class="material-icons">edit</i></button>
+                        <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(item.id)"><i style="margin: 0 auto" class="material-icons">delete</i></button>
                     </div>                    
                 </div>
             </div>

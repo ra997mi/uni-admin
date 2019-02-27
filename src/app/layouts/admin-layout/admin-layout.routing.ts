@@ -32,5 +32,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'add-contact',      component: AddContactComponent, canActivate: [ AuthGuard]},
     { path: 'notify',      component: NotifyComponent, canActivate: [ AuthGuard]},
     { path: 'all-notify',      component: AllNotifyComponent, canActivate: [ AuthGuard]},
-    { path: 'settings',      component: SettingsComponent, canActivate: [ AuthGuard]}
+    { path: 'settings',      component: SettingsComponent, canActivate: [ AuthGuard]},
+    { path: '**', redirectTo: '/dashboard' }
 ];

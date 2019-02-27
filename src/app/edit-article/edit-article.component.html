@@ -20,7 +20,7 @@
                               <div class="col-md-12">
                                 <div>
                                     <input type="file" name="file" id="file" class="inputfile" (change)="onSelectedFile($event)" accept=".png,.jpg" required />
-                                    <label class="btn btn-danger" for="file"><i class="material-icons">cloud_upload</i></label>
+                                    <label class="btn btn-danger" for="file"><i style="margin: 0 auto" class="material-icons">cloud_upload</i></label>
                                     <div class="progress">
 									<div class="progress-bar default-bg-color" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
 								    </div>

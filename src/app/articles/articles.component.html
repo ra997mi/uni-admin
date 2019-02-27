@@ -19,9 +19,9 @@
                                     <h5 class="card-title">{{item.title}}</h5>
                                     <p style = "max-width: 250px" class="card-text" [innerHTML]="substringText(item.description)"></p>
                                     <p class="card-text"><small class="text-muted">{{item.date}}</small></p>
-                                    <button class="btn btn-danger btn-round btn-sm" (click)="viewDialog(item)"><i class="material-icons">visibility</i></button>
-                                    <button class="btn btn-danger btn-round btn-sm" (click)="updateArticle(item)"><i class="material-icons">edit</i></button>
-                                    <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(item.id, item.imgname)"><i class="material-icons">delete</i></button>
+                                    <button class="btn btn-danger btn-round btn-sm" (click)="viewDialog(item)"><i style="margin: 0 auto" class="material-icons">visibility</i></button>
+                                    <button class="btn btn-danger btn-round btn-sm" (click)="updateArticle(item)"><i style="margin: 0 auto" class="material-icons">edit</i></button>
+                                    <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(item.id, item.imgname)"><i style="margin: 0 auto" class="material-icons">delete</i></button>
                                 </div>
                             </div>
                         </div>

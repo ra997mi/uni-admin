@@ -96,3 +96,8 @@ input:-moz-placeholder { text-align:right; }
     background: var(--main-bg-color);
     opacity:1;
 }
+
+.mat-dialog-container{
+    width: auto !important;
+    height : auto !important;
+}
