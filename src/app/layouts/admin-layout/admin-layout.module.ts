@@ -23,6 +23,9 @@ import { ConfirmDeleteComponent } from '../../confirm-delete/confirm-delete.comp
 import { SettingsComponent } from '../../settings/settings.component';
 import { ArticleViewComponent } from '../../article-view/article-view.component';
 import { NgxTrumbowygModule } from 'ngx-trumbowyg';
+import { DepartmentsComponent } from '../../departments/departments.component';
+import { AddDepartmentComponent } from '../../add-department/add-department.component';
+import { EditDepartmentComponent } from '../../edit-department/edit-department.component';
 
 import {
   MatButtonModule,
@@ -91,7 +94,10 @@ import {
   AllNotifyComponent,
   ConfirmDeleteComponent,
   ArticleViewComponent,
-  SettingsComponent
+  SettingsComponent,
+  DepartmentsComponent,
+  AddDepartmentComponent,
+  EditDepartmentComponent
   ],
   entryComponents:[ConfirmDeleteComponent, ArticleViewComponent]
 })

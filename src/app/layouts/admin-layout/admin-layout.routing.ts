@@ -15,6 +15,9 @@ import { AddContactComponent } from '../../add-contact/add-contact.component';
 import { NotifyComponent } from '../../notify/notify.component';
 import { AllNotifyComponent } from '../../all-notify/all-notify.component';
 import { SettingsComponent } from '../../settings/settings.component';
+import { DepartmentsComponent } from '../../departments/departments.component';
+import { AddDepartmentComponent } from '../../add-department/add-department.component';
+import { EditDepartmentComponent } from '../../edit-department/edit-department.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -33,5 +36,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'notify',      component: NotifyComponent, canActivate: [ AuthGuard]},
     { path: 'all-notify',      component: AllNotifyComponent, canActivate: [ AuthGuard]},
     { path: 'settings',      component: SettingsComponent, canActivate: [ AuthGuard]},
+    { path: 'departments',      component: DepartmentsComponent, canActivate: [ AuthGuard]},
+    { path: 'add-department',      component: AddDepartmentComponent, canActivate: [ AuthGuard]},
+    { path: 'edit-department',      component: EditDepartmentComponent, canActivate: [ AuthGuard]},
     { path: '**', redirectTo: '/dashboard' }
 ];

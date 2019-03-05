@@ -10,6 +10,31 @@ import * as firebase from 'firebase/app'
 export class FirebaseService {
 
   constructor(private firestore: AngularFirestore, private afAuth: AngularFireAuth) {}
+
+  addDepart(name, description) {
+    const id = this.firestore.createId();
+    this.firestore.doc(`departList/${id}`).set({
+      id,
+      name,
+      description,
+      });
+  }
+
+  updateDepart(id, name, description) {
+    this.firestore.doc(`departList/${id}`).set({
+      id,
+      name,
+      description,
+    });
+  }
+  
+  getDepart(){
+    return this.firestore.collection('departList').valueChanges();
+  }
+
+  deleteDepart(id) {
+    this.firestore.doc(`departList/${id}`).delete();
+  }
   
   addVideos(title, link) {
   const id = this.firestore.createId();
