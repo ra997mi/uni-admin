@@ -16,7 +16,6 @@ export class AboutComponent implements OnInit {
     vision;
     objectives;
     mission;
-    departments;
 
   constructor(private firestoreService: FirebaseService,
     private router: Router,
@@ -38,20 +37,18 @@ export class AboutComponent implements OnInit {
         this.vision = '!لا توجد بيانات مضافة';
         this.objectives = '!لا توجد بيانات مضافة';
         this.mission = '!لا توجد بيانات مضافة';
-        this.departments = '!لا توجد بيانات مضافة';
       }
       else{
         this.vision =  data[0].vision;
         this.objectives =  data[0].objectives;
         this.mission =  data[0].mission;
-        this.departments =  data[0].departments;
       }
       this.spinnerService.hide();
     });
   }
   
     addAbout() {
-    this.router.navigate(['add-about', {vision:this.vision, objectives:this.objectives, mission:this.mission, departments:this.departments}]);
+    this.router.navigate(['add-about', {vision:this.vision, objectives:this.objectives, mission:this.mission}]);
   }
 
 }

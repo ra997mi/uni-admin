@@ -55,14 +55,13 @@ export class FirebaseService {
     this.firestore.doc(`eventList/${id}`).delete();
   }
   
-  addAbout(vision, objectives, mission, departments) {
+  addAbout(vision, objectives, mission) {
     const id = 'uni-about';
     this.firestore.doc(`aboutList/${id}`).set({
     id,
     vision,
 	  objectives,
-	  mission,
-	  departments
+	  mission
     });
   }
 

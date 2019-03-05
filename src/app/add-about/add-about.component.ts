@@ -14,7 +14,6 @@ export class AddAboutComponent implements OnInit {
   vision;
   objectives;
   mission;
-  departments;
 
   constructor(private router: Router,private route: ActivatedRoute,
     public FirebaseService: FirebaseService,
@@ -32,13 +31,12 @@ export class AddAboutComponent implements OnInit {
       this.vision = data.vision;
       this.objectives = data.objectives;
       this.mission = data.mission;
-		  this.departments = data.departments;
       });
     }
   }
   
   saveFormData(form) {
-    this.FirebaseService.addAbout(this.vision, this.objectives, this.mission, this.departments);
+    this.FirebaseService.addAbout(this.vision, this.objectives, this.mission);
     this.router.navigate(['about']);
   }
 }
