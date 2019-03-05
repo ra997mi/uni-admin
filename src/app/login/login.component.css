@@ -5,7 +5,7 @@
 }
 
 .signin-content {
-  padding: 150px 1rem;
+  padding-top: 150px;
 }
 
 .full-width-input {
@@ -17,6 +17,9 @@
 }
 
 .login-main{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   height: 100vh;
   background-image: url(/assets/img/login-background.jpg);
 }
