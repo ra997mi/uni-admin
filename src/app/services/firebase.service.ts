@@ -147,6 +147,29 @@ export class FirebaseService {
     });
   }
 
+  addweekly(department, stage, image, imgname){
+    let filter = department + "" + stage;
+    const id = this.firestore.createId();
+    this.firestore.doc(`weeklyList/${id}`).set({
+      id,
+      department,
+      stage,
+      image,
+      imgname,
+      filter
+    });
+  }
+
+  getWeekly(){
+    return this.firestore.collection('weeklyList').valueChanges();
+  }
+
+  deleteWeekly(id, imgid) {
+	  const storageRef = firebase.storage().ref();
+    storageRef.child(`weekly/${imgid}`).delete();
+    this.firestore.doc(`weeklyList/${id}`).delete();
+  }
+
   updateNews(id, title, description, image, imgname, oldname) {
     const storageRef = firebase.storage().ref();
     storageRef.child(`posts/${oldname}`).delete();

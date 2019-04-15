@@ -26,6 +26,8 @@ import { NgxTrumbowygModule } from 'ngx-trumbowyg';
 import { DepartmentsComponent } from '../../departments/departments.component';
 import { AddDepartmentComponent } from '../../add-department/add-department.component';
 import { EditDepartmentComponent } from '../../edit-department/edit-department.component';
+import { WeeklyComponent } from '../../weekly/weekly.component';
+import { AddWeeklyComponent } from '../../add-weekly/add-weekly.component';
 
 import {
   MatButtonModule,
@@ -97,7 +99,9 @@ import {
   SettingsComponent,
   DepartmentsComponent,
   AddDepartmentComponent,
-  EditDepartmentComponent
+  EditDepartmentComponent,
+  WeeklyComponent,
+  AddWeeklyComponent
   ],
   entryComponents:[ConfirmDeleteComponent, ArticleViewComponent]
 })

@@ -18,6 +18,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/articles', title: 'لوحة الاخبار',  icon: 'library_books', class: '' },
     { path: '/videos', title: 'لوحة الفيديوهات',  icon: 'movie', class: '' },
     { path: '/departments', title: 'الاقسام',  icon: 'book', class: '' },
+    { path: '/weekly', title: 'الجدول الاسبوعي',  icon: 'today', class: '' },
     { path: '/about', title: 'لوحة المعلومات',  icon: 'info', class: '' },
     { path: '/contact', title: 'لوحة الاتصال',  icon: 'email', class: '' },
     { path: '/all-notify', title: 'لوحة الاحداث',  icon: 'notifications', class: '' },

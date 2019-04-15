@@ -18,6 +18,8 @@ import { SettingsComponent } from '../../settings/settings.component';
 import { DepartmentsComponent } from '../../departments/departments.component';
 import { AddDepartmentComponent } from '../../add-department/add-department.component';
 import { EditDepartmentComponent } from '../../edit-department/edit-department.component';
+import { WeeklyComponent } from '../../weekly/weekly.component';
+import { AddWeeklyComponent } from '../../add-weekly/add-weekly.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -39,5 +41,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'departments',      component: DepartmentsComponent, canActivate: [ AuthGuard]},
     { path: 'add-department',      component: AddDepartmentComponent, canActivate: [ AuthGuard]},
     { path: 'edit-department',      component: EditDepartmentComponent, canActivate: [ AuthGuard]},
+    { path: 'weekly',      component: WeeklyComponent, canActivate: [ AuthGuard]},
+    { path: 'add-weekly',      component: AddWeeklyComponent, canActivate: [ AuthGuard]},
     { path: '**', redirectTo: '/dashboard' }
 ];
