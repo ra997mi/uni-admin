@@ -20,28 +20,30 @@ import { AddDepartmentComponent } from '../../add-department/add-department.comp
 import { EditDepartmentComponent } from '../../edit-department/edit-department.component';
 import { WeeklyComponent } from '../../weekly/weekly.component';
 import { AddWeeklyComponent } from '../../add-weekly/add-weekly.component';
+import { StudentComponent } from '../../student/student.component';
 
 
 export const AdminLayoutRoutes: Routes = [
 
-    { path: 'dashboard',      component: DashboardComponent, canActivate: [ AuthGuard]},
-    { path: 'articles',      component: ArticlesComponent, canActivate: [ AuthGuard]},
-    { path: 'add-article',      component: AddArticleComponent, canActivate: [ AuthGuard]},
-    { path: 'edit-article',      component: EditArticleComponent, canActivate: [ AuthGuard]},
-	{ path: 'videos',      component: VideosComponent, canActivate: [ AuthGuard]},
-	{ path: 'add-video',      component: AddVideoComponent, canActivate: [ AuthGuard]},
-    { path: 'edit-video',      component: EditVideoComponent, canActivate: [ AuthGuard]},
-    { path: 'about',      component: AboutComponent, canActivate: [ AuthGuard]},
-	{ path: 'add-about',      component: AddAboutComponent, canActivate: [ AuthGuard]},
-    { path: 'contact',      component: ContactusComponent, canActivate: [ AuthGuard]},
-    { path: 'add-contact',      component: AddContactComponent, canActivate: [ AuthGuard]},
-    { path: 'notify',      component: NotifyComponent, canActivate: [ AuthGuard]},
-    { path: 'all-notify',      component: AllNotifyComponent, canActivate: [ AuthGuard]},
-    { path: 'settings',      component: SettingsComponent, canActivate: [ AuthGuard]},
-    { path: 'departments',      component: DepartmentsComponent, canActivate: [ AuthGuard]},
-    { path: 'add-department',      component: AddDepartmentComponent, canActivate: [ AuthGuard]},
-    { path: 'edit-department',      component: EditDepartmentComponent, canActivate: [ AuthGuard]},
-    { path: 'weekly',      component: WeeklyComponent, canActivate: [ AuthGuard]},
-    { path: 'add-weekly',      component: AddWeeklyComponent, canActivate: [ AuthGuard]},
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+    { path: 'articles', component: ArticlesComponent, canActivate: [AuthGuard] },
+    { path: 'add-article', component: AddArticleComponent, canActivate: [AuthGuard] },
+    { path: 'edit-article', component: EditArticleComponent, canActivate: [AuthGuard] },
+    { path: 'videos', component: VideosComponent, canActivate: [AuthGuard] },
+    { path: 'add-video', component: AddVideoComponent, canActivate: [AuthGuard] },
+    { path: 'edit-video', component: EditVideoComponent, canActivate: [AuthGuard] },
+    { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
+    { path: 'add-about', component: AddAboutComponent, canActivate: [AuthGuard] },
+    { path: 'contact', component: ContactusComponent, canActivate: [AuthGuard] },
+    { path: 'add-contact', component: AddContactComponent, canActivate: [AuthGuard] },
+    { path: 'notify', component: NotifyComponent, canActivate: [AuthGuard] },
+    { path: 'all-notify', component: AllNotifyComponent, canActivate: [AuthGuard] },
+    { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+    { path: 'departments', component: DepartmentsComponent, canActivate: [AuthGuard] },
+    { path: 'add-department', component: AddDepartmentComponent, canActivate: [AuthGuard] },
+    { path: 'edit-department', component: EditDepartmentComponent, canActivate: [AuthGuard] },
+    { path: 'weekly', component: WeeklyComponent, canActivate: [AuthGuard] },
+    { path: 'add-weekly', component: AddWeeklyComponent, canActivate: [AuthGuard] },
+    { path: 'student', component: StudentComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: '/dashboard' }
 ];

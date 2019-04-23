@@ -28,6 +28,7 @@ import { AddDepartmentComponent } from '../../add-department/add-department.comp
 import { EditDepartmentComponent } from '../../edit-department/edit-department.component';
 import { WeeklyComponent } from '../../weekly/weekly.component';
 import { AddWeeklyComponent } from '../../add-weekly/add-weekly.component';
+import { StudentComponent } from '../../student/student.component'
 
 import {
   MatButtonModule,
@@ -81,29 +82,30 @@ import {
     })
   ],
   declarations: [
-  DashboardComponent,
-  ArticlesComponent,
-  AddArticleComponent,
-  EditArticleComponent,
-  VideosComponent,
-  AddVideoComponent,
-  EditVideoComponent,
-  AboutComponent,
-  ContactusComponent,
-  AddAboutComponent,
-  AddContactComponent,
-  NotifyComponent,
-  AllNotifyComponent,
-  ConfirmDeleteComponent,
-  ArticleViewComponent,
-  SettingsComponent,
-  DepartmentsComponent,
-  AddDepartmentComponent,
-  EditDepartmentComponent,
-  WeeklyComponent,
-  AddWeeklyComponent
+    DashboardComponent,
+    ArticlesComponent,
+    AddArticleComponent,
+    EditArticleComponent,
+    VideosComponent,
+    AddVideoComponent,
+    EditVideoComponent,
+    AboutComponent,
+    ContactusComponent,
+    AddAboutComponent,
+    AddContactComponent,
+    NotifyComponent,
+    AllNotifyComponent,
+    ConfirmDeleteComponent,
+    ArticleViewComponent,
+    SettingsComponent,
+    DepartmentsComponent,
+    AddDepartmentComponent,
+    EditDepartmentComponent,
+    WeeklyComponent,
+    AddWeeklyComponent,
+    StudentComponent
   ],
-  entryComponents:[ConfirmDeleteComponent, ArticleViewComponent]
+  entryComponents: [ConfirmDeleteComponent, ArticleViewComponent]
 })
 
-export class AdminLayoutModule {}
+export class AdminLayoutModule { }
