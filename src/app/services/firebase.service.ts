@@ -148,7 +148,7 @@ export class FirebaseService {
   }
 
   addweekly(department, stage, image, imgname){
-    let filter = department + "" + stage;
+    let filter = department + "_" + stage;
     const id = this.firestore.createId();
     this.firestore.doc(`weeklyList/${id}`).set({
       id,

@@ -22,12 +22,12 @@ export class FooterComponent implements OnInit, AfterViewInit{
   ngAfterViewInit() {
     this.settingsList.subscribe( data => {
       if(data[0] == undefined){
-        this.university = "منصة جامعتي"
+        this.university = "منصة UMA"
       }
       else{
         this.university = data[0].university;
         if(this.university == null || this.university == undefined){
-          this.university = "منصة جامعتي"
+          this.university = "منصة UMA"
         }
       }
     });
