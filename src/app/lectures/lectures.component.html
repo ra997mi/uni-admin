@@ -1,0 +1,60 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header card-header-danger">
+        <h4 class="card-title" style="text-align: center">لوحة المحاضرات</h4>
+        <p class="card-category" style="text-align: center">قائمة المحاضرات المضافة الى المنصة</p>
+        <button mat-raised-button class="btn btn-danger btn-round pull-right" routerLink="/add-lectures"><i
+            class="material-icons">control_point</i> رفع محاضرة</button>
+      </div>
+      <div class="card-body">
+        <div id="no-items-ava">
+          <img src="assets/img/weekly.svg" style="width: 140px;height: 140px;">
+          <p style="font-weight: bold; margin:10px">لا يوجد بيانات</p>
+        </div>
+        <div id="SHOW">
+          <div class="row" style="direction: rtl">
+            <div class="col-md-4">
+              <h4 style="text-align: right">القسم</h4>
+              <mat-form-field>
+                <mat-label>اختر القسم</mat-label>
+                <mat-select name="department" [(ngModel)]="department">
+                  <mat-option *ngFor="let dep of departData" [value]="dep.name">
+                    {{dep.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <h4 style="text-align: right">المرحلة</h4>
+              <mat-form-field>
+                <mat-label>اختر المرحلة</mat-label>
+                <mat-select name="stage" [(ngModel)]="stage">
+                  <mat-option value="الاولى">الاولى</mat-option>
+                  <mat-option value="الثانية">الثانية</mat-option>
+                  <mat-option value="الثالثة">الثالثة</mat-option>
+                  <mat-option value="الرابعة">الرابعة</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4" style="margin-top: 25px">
+              <button mat-raised-button (click)="getData()" class="btn btn-danger pull-right"><i
+                  class="material-icons">search</i> بحث</button>
+            </div>
+          </div>
+          <div class="row">
+            <ul>
+              <div class="col-md-12" *ngFor="let course of lectureNameList">
+                <li>
+                  <h3 routerLink="/view-lectures"
+                    [queryParams]="{ 'department': department, 'stage': stage, 'course': course }">
+                    {{course}}</h3>
+                </li>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

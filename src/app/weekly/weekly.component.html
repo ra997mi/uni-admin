@@ -5,7 +5,7 @@
         <h4 class="card-title" style="text-align: center">الجدول الاسبوعي</h4>
         <p class="card-category" style="text-align: center">الجدول الاسبوعي الخاص بلمراحل والاقسام</p>
         <button mat-raised-button class="btn btn-danger btn-round pull-right" routerLink="/add-weekly"><i
-            class="material-icons">short_text</i> اضافة</button>
+            class="material-icons">control_point</i> اضافة</button>
       </div>
       <div class="card-body">
         <div class="card-body">
@@ -31,10 +31,10 @@
                 <mat-form-field>
                   <mat-label>اختر المرحلة</mat-label>
                   <mat-select name="stage" [(ngModel)]="stage">
-                    <mat-option [value]="1">الاولى</mat-option>
-                    <mat-option [value]="2">الثانية</mat-option>
-                    <mat-option [value]="3">الثالثة</mat-option>
-                    <mat-option [value]="4">الرابعة</mat-option>
+                    <mat-option value="الاولى">الاولى</mat-option>
+                    <mat-option value="الثانية">الثانية</mat-option>
+                    <mat-option value="الثالثة">الثالثة</mat-option>
+                    <mat-option value="الرابعة">الرابعة</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>

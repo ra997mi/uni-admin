@@ -21,7 +21,9 @@ import { EditDepartmentComponent } from '../../edit-department/edit-department.c
 import { WeeklyComponent } from '../../weekly/weekly.component';
 import { AddWeeklyComponent } from '../../add-weekly/add-weekly.component';
 import { StudentComponent } from '../../student/student.component';
-
+import { LecturesComponent } from '../../lectures/lectures.component';
+import { AddLecturesComponent } from '../../add-lectures/add-lectures.component';
+import { ViewLecturesComponent } from '../../view-lectures/view-lectures.component';
 
 export const AdminLayoutRoutes: Routes = [
 
@@ -45,5 +47,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'weekly', component: WeeklyComponent, canActivate: [AuthGuard] },
     { path: 'add-weekly', component: AddWeeklyComponent, canActivate: [AuthGuard] },
     { path: 'student', component: StudentComponent, canActivate: [AuthGuard] },
+    { path: 'lectures', component: LecturesComponent, canActivate: [AuthGuard] },
+    { path: 'add-lectures', component: AddLecturesComponent, canActivate: [AuthGuard] },
+    { path: 'view-lectures', component: ViewLecturesComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: '/dashboard' }
 ];

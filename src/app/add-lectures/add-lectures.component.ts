@@ -11,19 +11,22 @@ import { NgxSpinnerService } from 'ngx-spinner';
 const STORAGE_KEY = 'local_user';
 
 @Component({
-  selector: 'app-add-weekly',
-  templateUrl: './add-weekly.component.html',
-  styleUrls: ['./add-weekly.component.scss']
+  selector: 'app-add-lectures',
+  templateUrl: './add-lectures.component.html',
+  styleUrls: ['./add-lectures.component.scss']
 })
-export class AddWeeklyComponent implements OnInit, AfterViewInit {
+export class AddLecturesComponent implements OnInit, AfterViewInit {
 
   departList: Observable<any[]>;
   departData: any;
 
   department: any;
   stage: any;
-  image: any;
-  img_name: any;
+  lecturename: any;
+  teachername: any;
+  lecturenumber: any;
+  lec: any;
+  lec_name: any;
 
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
@@ -63,19 +66,18 @@ export class AddWeeklyComponent implements OnInit, AfterViewInit {
   }
 
   saveFormData(form) {
-    if (this.image) {
-      this.firestoreService.addweekly(this.department, this.stage, this.image, this.img_name);
-      this.router.navigate(['weekly']);
-    }
-    else {
-      this.toastr.error('خطأ', 'يرجى انتظار تحميل الصورة');
+    if (this.lec) {
+      this.firestoreService.addLecture(this.department, this.stage, this.lecturename, this.teachername, this.lecturenumber, this.lec, this.lec_name);
+      this.router.navigate(['lectures']);
+    } else {
+      this.toastr.error('خطأ', 'يرجى انتظار تحميل المحاضرة');
     }
   }
 
   onSelectedFile(event) {
-    const randomId = Math.random().toString(36).substring(2);
-    this.img_name = 'uni-weekly' + randomId + event.target.files[0].name;
-    const id = '/weekly/' + this.img_name;
+    const randomId = Math.random().toString(36).substring(10);
+    this.lec_name = 'uma_' + randomId + '_' + event.target.files[0].name;
+    const id = '/lectures/' + this.lec_name;
     this.ref = this.mstorage.ref(id);
     this.task = this.ref.put(event.target.files[0]);
     this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
@@ -83,7 +85,7 @@ export class AddWeeklyComponent implements OnInit, AfterViewInit {
     this.task.snapshotChanges().pipe(
       finalize(() => {
         this.ref.getDownloadURL().subscribe(url => {
-          this.image = url;
+          this.lec = url;
         });
       })
     ).subscribe();

@@ -2,31 +2,32 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header card-header-danger">
-                <h3 class="card-title" style="text-align: center">لوحة الاقسام الرئيسية</h3>
-                <button mat-raised-button  class="btn btn-danger btn-round pull-right" routerLink="/add-department"><i class="material-icons">control_point</i> اضافة قسم جديد</button>
+                <h4 class="card-title" style="text-align: center">لوحة الاقسام الرئيسية</h4>
+                <p class="card-category" style="text-align: center">قائمة الاقسام المتوفرة في الجامعة</p>
+                <button mat-raised-button class="btn btn-danger btn-round pull-right" routerLink="/add-department"><i
+                        class="material-icons">control_point</i> اضافة قسم جديد</button>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div id="no-items-ava">
                         <img src="assets/img/think.svg" style="width: 140px;height: 140px;">
-                        <p style="font-weight: bold; margin:10px">لا يوجد عناصر</p>
-                    </div>                   
+                        <p style="font-weight: bold; margin:10px">لا يوجد اقسام</p>
+                    </div>
                     <div id="SHOW" class="col-md-12" *ngFor="let item of departData">
                         <div class="card card-profile">
                             <div class="card-body" style="text-align: right;direction: rtl;padding: 10px">
-                                <h3 style="font-weight: bold" class="card-category text-gray">{{item.name}}</h3><hr>
+                                <h3 style="font-weight: bold" class="card-category text-gray">{{item.name}}</h3>
+                                <hr>
                                 <p style="font-size:18px" class="card-description">{{item.description}}</p>
-                                <button class="btn btn-danger btn-round btn-sm" (click)="updateDepart(item)"><i style="margin: 0 auto" class="material-icons">edit</i></button>
-                                <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(item.id)"><i style="margin: 0 auto" class="material-icons">delete</i></button>
+                                <button class="btn btn-danger btn-round btn-sm" (click)="updateDepart(item)"><i
+                                        style="margin: 0 auto" class="material-icons">edit</i></button>
+                                <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(item.id)"><i
+                                        style="margin: 0 auto" class="material-icons">delete</i></button>
                             </div>
                         </div>
-                    </div>                     
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-  </div>
-  
-
-
-
+</div>

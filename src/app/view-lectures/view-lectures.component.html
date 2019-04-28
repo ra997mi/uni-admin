@@ -1,0 +1,28 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header card-header-danger">
+        <h4 class="card-title" style="text-align: center">المحاضرات</h4>
+        <p class="card-category" style="text-align: center">المحاضرات المتوفرة لهذة المادة</p>
+        <button mat-raised-button class="btn btn-danger btn-round pull-right" routerLink="/lectures"><i
+            class="material-icons">arrow_back</i> رجوع</button>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-lg-4" *ngFor="let l of lectures">
+            <div class="card card-profile">
+              <div class="card-body" style="text-align: right;direction: rtl;padding: 10px">
+                <h4 class="card-category text-gray">:رقم الماضرة {{l.lecturenumber}}</h4>
+                <h4 class="card-category text-gray">:اسم التدريسي {{l.teachername}}</h4>
+                <button class="btn btn-danger btn-round btn-sm" (click)="openDialog(l.id, l.lec_name)"><i
+                    style="margin: 0 auto" class="material-icons">delete</i></button>
+                <button class="btn btn-danger btn-round btn-sm" (click)="downloadLecture(l.lec, l.lec_name)"><i
+                    style="margin: 0 auto" class="material-icons">get_app</i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

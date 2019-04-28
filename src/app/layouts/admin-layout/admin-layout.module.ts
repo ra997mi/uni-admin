@@ -29,6 +29,9 @@ import { EditDepartmentComponent } from '../../edit-department/edit-department.c
 import { WeeklyComponent } from '../../weekly/weekly.component';
 import { AddWeeklyComponent } from '../../add-weekly/add-weekly.component';
 import { StudentComponent } from '../../student/student.component'
+import { LecturesComponent } from '../../lectures/lectures.component';
+import { AddLecturesComponent } from '../../add-lectures/add-lectures.component';
+import { ViewLecturesComponent } from '../../view-lectures/view-lectures.component';
 
 import {
   MatButtonModule,
@@ -103,7 +106,10 @@ import {
     EditDepartmentComponent,
     WeeklyComponent,
     AddWeeklyComponent,
-    StudentComponent
+    StudentComponent,
+    LecturesComponent,
+    AddLecturesComponent,
+    ViewLecturesComponent
   ],
   entryComponents: [ConfirmDeleteComponent, ArticleViewComponent]
 })

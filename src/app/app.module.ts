@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -13,6 +13,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FirestoreSettingsToken } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { FirebaseService } from './services/firebase.service';
 import { AuthGuard } from './core/auth.guard';
 import { APP_BASE_HREF } from '@angular/common';
@@ -35,13 +36,14 @@ import { ToastrModule } from 'ngx-toastr';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    AngularFireDatabaseModule,
     YoutubePlayerModule,
     NgxSpinnerModule,
     ToastrModule.forRoot({
-    closeButton: true,
-    timeOut: 5000,
-    positionClass: 'toast-bottom-center',
-    preventDuplicates: true,
+      closeButton: true,
+      timeOut: 5000,
+      positionClass: 'toast-bottom-center',
+      preventDuplicates: true,
     })
   ],
   declarations: [
@@ -49,7 +51,7 @@ import { ToastrModule } from 'ngx-toastr';
     AdminLayoutComponent,
     LoginComponent
   ],
-  providers: [DatePipe, FirebaseService, AuthGuard, {provide: APP_BASE_HREF, useValue : ''}, {provide: FirestoreSettingsToken, useValue: {}}],
+  providers: [DatePipe, FirebaseService, AuthGuard, { provide: APP_BASE_HREF, useValue: '' }, { provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
