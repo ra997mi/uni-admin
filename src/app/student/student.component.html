@@ -11,13 +11,13 @@
                         <form #f="ngForm" (ngSubmit)="saveFormData(f)" style="direction:rtl">
                             <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <mat-form-field>
                                         <input matInput placeholder="الاسم الكامل" name="fullName"
                                             [(ngModel)]="service.formData.fullName" required>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <mat-form-field>
                                         <mat-label>اختر القسم</mat-label>
                                         <mat-select name="departments" [(ngModel)]="service.formData.departments">
@@ -27,7 +27,18 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
+                                    <mat-form-field>
+                                        <mat-label>المرحلة</mat-label>
+                                        <mat-select required name="stage" [(ngModel)]="service.formData.stage">
+                                            <mat-option value="الاولى">الاولى</mat-option>
+                                            <mat-option value="الثانية">الثانية</mat-option>
+                                            <mat-option value="الثالثة">الثالثة</mat-option>
+                                            <mat-option value="الرابعة">الرابعة</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
                                     <mat-form-field>
                                         <mat-label>الجنس</mat-label>
                                         <mat-select required name="gender" [(ngModel)]="service.formData.gender">
@@ -74,7 +85,8 @@
                                 </div>
                             </div>
                             <button mat-raised-button type="submit" [disabled]="!f.valid"
-                                class="btn btn-danger pull-right"><i class="material-icons">check</i> اضافة</button>
+                                class="btn btn-danger pull-right"><i class="material-icons">check</i>
+                                {{btnTXT}}</button>
                             <button mat-raised-button class="btn btn-danger pull-right" routerLink="/dashboard"><i
                                     class="material-icons">cancel</i> الغاء</button>
                             <div class="clearfix"></div>
@@ -93,6 +105,7 @@
                                     <thead class="text-danger">
                                         <th>الاسم الكامل</th>
                                         <th>القسم</th>
+                                        <th>المرحلة</th>
                                         <th>الجنس</th>
                                         <th>تاريخ الميلاد</th>
                                         <th>العنوان</th>
@@ -105,6 +118,7 @@
                                         <tr *ngFor="let student of studentList">
                                             <td>{{student.fullName}}</td>
                                             <td>{{student.departments}}</td>
+                                            <td>{{student.stage}}</td>
                                             <td>{{student.gender}}</td>
                                             <td>{{student.birthdate.toDate() | date: 'mediumDate'}}</td>
                                             <td>{{student.address}}</td>
@@ -112,7 +126,7 @@
                                             <td>{{student.email}}</td>
                                             <td>{{student.password}}</td>
                                             <td><a class="btn btn-white btn-round btn-just-icon"
-                                                    (click)="onDelete(student.id)">
+                                                    (click)="onDelete(student.email)">
                                                     <i class="material-icons">delete</i>
                                                 </a>
                                                 <a class="btn btn-white btn-round btn-just-icon"

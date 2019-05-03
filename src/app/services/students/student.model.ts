@@ -4,6 +4,7 @@ export class Student {
     gender: string;
     birthdate: string;
     departments: string;
+    stage: string;
     address: string;
     mobile: string;
     email: string;

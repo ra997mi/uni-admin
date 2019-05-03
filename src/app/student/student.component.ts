@@ -23,8 +23,9 @@ export class StudentComponent implements OnInit, AfterViewInit {
 
   studentList: Student[];
   isEdit: boolean;
+  btnTXT = 'اضافة'
 
-  constructor(private service: StudentService,
+  constructor(public service: StudentService,
     private firestore: AngularFirestore,
     private toastr: ToastrService,
     private firestoreService: FirebaseService,
@@ -63,6 +64,7 @@ export class StudentComponent implements OnInit, AfterViewInit {
       gender: '',
       birthdate: '',
       departments: '',
+      stage: '',
       address: '',
       mobile: '',
       email: '',
@@ -71,29 +73,31 @@ export class StudentComponent implements OnInit, AfterViewInit {
   }
 
   saveFormData(form: NgForm) {
+    this.btnTXT = 'اضافة';
     let data = Object.assign({}, form.value);
-    delete data.id;
+    let email = data.email;
     if (form.value.id == null) {
-      this.firestore.collection('Students').add(data);
+      this.firestore.doc(`Students/${email}`).set(data);
       this.afAuth.auth.createUserWithEmailAndPassword(data.email, data.password);
     }
     else {
-      this.firestore.doc('Students/' + form.value.id).update(data);
+      this.firestore.doc('Students/' + form.value.email).update(data);
     }
 
     this.resetForm(form);
-    this.toastr.success('تمت الاضافة بنجاح', 'اضافة');
+    this.toastr.success('تمت العملية بنجاح', 'العملية');
   }
 
   onEdit(stu: Student) {
     this.service.formData = Object.assign({}, stu);
+    this.btnTXT = "تحديث";
   }
 
-  onDelete(id: string): void {
+  onDelete(email: string): void {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result == 'true') {
-        this.firestore.doc('Students/' + id).delete();
+        this.firestore.doc('Students/' + email).delete();
         this.toastr.warning('تم الحذف بنجاح', 'حذف');
       }
     });
