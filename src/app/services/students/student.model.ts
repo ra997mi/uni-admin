@@ -9,4 +9,6 @@ export class Student {
     mobile: string;
     email: string;
     password: string;
+    picture: string;
+    img_name: string;
 }

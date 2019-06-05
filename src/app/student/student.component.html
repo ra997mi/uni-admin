@@ -84,6 +84,23 @@
                                     </mat-form-field>
                                 </div>
                             </div>
+                            <div class="row" style="text-align: right; direction: rtl">
+                                <div class="col-md-12">
+                                    <div>
+                                        <p>الصورة الشخصية</p>
+                                        <input type="file" name="file" id="file" class="inputfile"
+                                            (change)="onSelectedFile($event)" accept=".png,.jpg" required />
+                                        <label class="btn btn-danger" for="file"><i style="margin: 0 auto"
+                                                class="material-icons">cloud_upload</i></label>
+                                        <div class="progress">
+                                            <div class="progress-bar default-bg-color" role="progressbar"
+                                                [style.width]="(uploadProgress | async) + '%'"
+                                                [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <button mat-raised-button type="submit" [disabled]="!f.valid"
                                 class="btn btn-danger pull-right"><i class="material-icons">check</i>
                                 {{btnTXT}}</button>
@@ -126,7 +143,7 @@
                                             <td>{{student.email}}</td>
                                             <td>{{student.password}}</td>
                                             <td><a class="btn btn-white btn-round btn-just-icon"
-                                                    (click)="onDelete(student.email)">
+                                                    (click)="onDelete(student.email, student.img_name)" style="color:white; background:var(--main-bg-color)">
                                                     <i class="material-icons">delete</i>
                                                 </a>
                                                 <a class="btn btn-white btn-round btn-just-icon"
