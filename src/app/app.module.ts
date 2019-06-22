@@ -19,7 +19,7 @@ import { AuthGuard } from './core/auth.guard';
 import { APP_BASE_HREF } from '@angular/common';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
-import { YoutubePlayerModule } from 'ngx-youtube-player';
+import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -37,7 +37,7 @@ import { ToastrModule } from 'ngx-toastr';
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    YoutubePlayerModule,
+    NgxYoutubePlayerModule.forRoot(),
     NgxSpinnerModule,
     ToastrModule.forRoot({
       closeButton: true,

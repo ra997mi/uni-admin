@@ -142,7 +142,3 @@ input:-moz-placeholder {
     width: auto !important;
     height: auto !important;
 }
-
-.sidebar .sidebar-wrapper {
-    overflow: auto !important;
-}

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 import { ArticlesComponent } from '../../articles/articles.component';
@@ -10,7 +11,6 @@ import { EditArticleComponent } from '../../edit-article/edit-article.component'
 import { VideosComponent } from '../../videos/videos.component';
 import { AddVideoComponent } from '../../add-video/add-video.component';
 import { EditVideoComponent } from '../../edit-video/edit-video.component';
-import { YoutubePlayerModule } from 'ngx-youtube-player';
 import { AboutComponent } from '../../about/about.component';
 import { ContactusComponent } from '../../contactus/contactus.component';
 import { AddAboutComponent } from '../../add-about/add-about.component';
@@ -50,6 +50,7 @@ import {
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+	NgxYoutubePlayerModule.forRoot(),
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
@@ -59,7 +60,6 @@ import {
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
-    YoutubePlayerModule,
     NgxSpinnerModule,
     NgxTrumbowygModule.withConfig({
       lang: 'ar',
